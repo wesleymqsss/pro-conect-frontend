@@ -4,8 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './pages/home/home.module';
-
-
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';  
+import {provideAnimations} from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';  
 
 @NgModule({
   declarations: [
@@ -15,10 +18,23 @@ import { HomeModule } from './pages/home/home.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HomeModule 
+    HomeModule,
+    ToastModule,
+    ButtonModule
 
   ],
-  providers: [],
+  exports:[
+    BrowserModule
+  ],
+  providers: [
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    }),
+    provideAnimations()
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
