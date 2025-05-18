@@ -3,7 +3,9 @@ import { MenuItem } from 'primeng/api';
 import { Drawer } from 'primeng/drawer';
 import { UserLogin } from '../../core/interface/userLogin';
 import { LoginService } from '../../core/service/login.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SnackbarService } from '../../core/service/snackbar.service';
+import { confirmarSenharIguais } from '../../validators/passwordValidators';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +22,10 @@ export class HeaderComponent {
   formUpdateUser!: FormGroup;
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
-  constructor() {
+  constructor(
+    private _fb: FormBuilder,
+    private _loginService: LoginService,
+    private _snackbarService: SnackbarService) {
   }
 
   closeCallback(e: any): void {
@@ -28,6 +33,17 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
+    this.formUpdateUser = this._fb.group(
+      {
+        username: [this.newUserLogin.username, Validators.required],
+        password: ['', Validators.required],
+        confirmpassword: ['', Validators.required],
+      },
+      {
+        validators: confirmarSenharIguais('password', 'confirmpassword')
+      }
+    );
+
     this.items = [
       {
         label: 'Home',
@@ -51,7 +67,7 @@ export class HeaderComponent {
             icon: 'pi pi-user-edit',
             command: () => this.showDialog()
           },
-           {
+          {
             label: 'Sair',
             icon: 'pi pi-sign-out',
             routerLink: ['/']
@@ -69,8 +85,44 @@ export class HeaderComponent {
     }
   }
 
-    showDialog() {
-        this.visibleEditProfile = true;
+  showDialog() {
+    this.visibleEditProfile = true;
+  }
+
+  submitUpdate() {
+    const idUser = this.newUserLogin.id;
+    const role = this.newUserLogin.role;
+
+    if (this.formUpdateUser.invalid) {
+      this._snackbarService.showContrast("Favor, verificar se todos os campos estão preenchidos corretamente.");
+      this.formUpdateUser.markAllAsTouched();
+      return;
     }
+
+    const updateUser = {
+      id: idUser,
+      username: this.formUpdateUser.get('username')?.value,
+      password: this.formUpdateUser.get('password')?.value,
+      role: role
+    }
+
+    this._loginService.updateUser(idUser, updateUser).subscribe({
+      next: (data) => {
+        this._snackbarService.showSuccess("Usuário atualizado com sucesso!!!");
+        this.visibleEditProfile = false;
+        console.log(updateUser)
+        this.formUpdateUser.reset();
+      }, error: (err) => {
+        if (err.status === 200) {
+          this._snackbarService.showSuccess("Usuário atualizado com sucesso!!!");
+          this.visibleEditProfile = false;
+          console.log(updateUser)
+          this.formUpdateUser.reset();
+        } else {
+          this._snackbarService.showContrast("Error ao salvar alterações.")
+        }
+      }
+    })
+  }
 
 }
