@@ -123,8 +123,12 @@ export class HeaderComponent {
         }
       }
     })
+  }
 
-    
+  closeModal() {
+    this.visibleEditProfile = false
+    this.formUpdateUser.get('password')?.reset();
+    this.formUpdateUser.get('confirmpassword')?.reset();
   }
 
 }
