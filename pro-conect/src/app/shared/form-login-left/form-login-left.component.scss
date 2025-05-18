@@ -7,9 +7,9 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    flex-direction: column;
 }
 
 .img {
@@ -20,4 +20,86 @@
     width: 380px;
     height: 250px;
     border-radius: 7px;
+}
+
+.header-login {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 30px;
+    color: #FFF;
+}
+
+.img:hover {
+    cursor: pointer;
+
+}
+
+.image-icos {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    .image-1 {
+        height: 31px;
+        width: 31px;
+        background-image: url('../../../assets/discordia.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 1%;
+    }
+
+    .image-1:hover {
+        transition: 0.5s;
+        height:31px;
+        width:31px;
+        background-color: #e7e7e7;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .image-2 {
+        height: 30px;
+        width: 30px;
+        background-image: url('../../../assets/logotipo-do-aplicativo-do-facebook.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 1%;
+    }
+
+    .image-2:hover {
+        transition: 0.5s;
+        height: 30px;
+        width: 30px;
+        background-color: #e7e7e7;
+        cursor: pointer;
+        border-radius: 2px;
+    }
+
+    .image-3 {
+        height: 31px;
+        width: 31px;
+        background-image: url('../../../assets/linkedin.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 1%;
+    }
+
+    .image-3:hover {
+        transition: 0.5s;
+        height:31px;
+        width:31px;
+        background-color: #e7e7e7;
+        cursor: pointer;
+        border-radius: 2px;
+    }
 }
