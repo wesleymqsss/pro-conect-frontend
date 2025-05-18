@@ -23,3 +23,8 @@ app-root {
     overflow: hidden;
     background-color: #f5f5f5;
 }
+
+.p-menubar-root-list > .p-menubar-item > .p-menubar-item-content{
+    background-color: var(--p-violet-800);
+    color: #ffffff;
+}

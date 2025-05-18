@@ -20,4 +20,8 @@ export class LoginService {
   getUserId(id: number): Observable<UserLogin>{
     return this.http.get<UserLogin>(`${this.url + id}`);
   }
+
+  updateUser(id: number, user: any): Observable<any>{
+    return this.http.put<any>(`${this.url + id}`, user)
+  }
 }

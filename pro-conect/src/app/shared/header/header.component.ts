@@ -3,6 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { Drawer } from 'primeng/drawer';
 import { UserLogin } from '../../core/interface/userLogin';
 import { LoginService } from '../../core/service/login.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,11 @@ export class HeaderComponent {
   newUserLogin!: any
   items: MenuItem[] | undefined;
   visible: boolean = false;
-
+  visibleEditProfile: boolean = false;
+  formUpdateUser!: FormGroup;
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
-  constructor(){
-
+  constructor() {
   }
 
   closeCallback(e: any): void {
@@ -29,23 +30,47 @@ export class HeaderComponent {
   ngOnInit() {
     this.items = [
       {
-        label: 'Update',
-        icon: 'pi pi-refresh'
+        label: 'Home',
+        icon: 'pi pi-home',
+        routerLink: ['/home/' + this.newUserLogin.id]
       },
       {
-        label: 'Delete',
-        icon: 'pi pi-times'
-      }
-    ];
-    console.log(this.userLogin)
+        label: 'Contact',
+        icon: 'pi pi-envelope'
+      },
+      {
+        label: 'Perfil',
+        icon: 'pi pi-search',
+        items: [
+          {
+            label: 'Blocks',
+            icon: 'pi pi-server'
+          },
+          {
+            label: 'Atualizar Perfil',
+            icon: 'pi pi-user-edit',
+            command: () => this.showDialog()
+          },
+           {
+            label: 'Sair',
+            icon: 'pi pi-sign-out',
+            routerLink: ['/']
+
+          },
+        ]
+      },
+    ]
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['userLogin'] && changes['userLogin'].currentValue){
-     this.newUserLogin = (changes['userLogin'].currentValue);
+    if (changes['userLogin'] && changes['userLogin'].currentValue) {
+      this.newUserLogin = (changes['userLogin'].currentValue);
 
     }
-    
   }
+
+    showDialog() {
+        this.visibleEditProfile = true;
+    }
 
 }

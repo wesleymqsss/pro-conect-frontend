@@ -14,7 +14,8 @@ import { Toolbar } from 'primeng/toolbar';
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClass } from 'primeng/styleclass';
-
+import { Menubar } from 'primeng/menubar';
+import { Dialog } from 'primeng/dialog';
 
 @NgModule({
   imports: [
@@ -37,7 +38,9 @@ import { StyleClass } from 'primeng/styleclass';
     ButtonModule, 
     Ripple, 
     AvatarModule, 
-    StyleClass
+    StyleClass,
+    Menubar,
+    Dialog,
   ],
   exports: [
     FocusTrapModule,
@@ -59,7 +62,9 @@ import { StyleClass } from 'primeng/styleclass';
     ButtonModule, 
     Ripple, 
     AvatarModule, 
-    StyleClass
+    StyleClass,
+    Menubar,
+    Dialog,
   ]
 })
 export class MaterialModule { }
