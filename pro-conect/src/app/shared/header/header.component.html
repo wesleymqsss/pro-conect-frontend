@@ -6,7 +6,7 @@
         <ng-template pTemplate="end">
             <div class="info-user">
                 <span>
-                    {{ newUserLogin.role.toLowerCase() }}
+                    {{ newUserLogin.role }}
                 </span>
                 <div class="bar"></div>
                 <span>
@@ -25,26 +25,42 @@
         <div class="input-row">
             <label for="username" class="label-input">Usuário:</label>
             <div class="flex items-center gap-4 mb-4 content-input">
-                <input pInputText formControlName="username" id="username" class="flex-auto" autocomplete="off" />
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-user"></i>
+                    </p-inputgroup-addon>
+                    <input pInputText formControlName="username" id="username" class="flex-auto" autocomplete="off" />
+                </p-inputgroup>
             </div>
         </div>
         <div class="input-row">
+
             <label for="email" class="label-input">Senha: </label>
             <div class="flex items-center gap-4  content-input">
-                <input pInputText formControlName="password" id="password" type="password" class="flex-auto"
-                    autocomplete="off" />
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-key"></i>
+                    </p-inputgroup-addon>
+                    <input pInputText formControlName="password" id="password" type="password" class="flex-auto"
+                        autocomplete="off" />
+                </p-inputgroup>
             </div>
         </div>
-        
-        <div class="input-row" >
+
+        <div class="input-row">
             <label for="email" class="label-input">Confirmar senha:</label>
             <div class="flex items-center gap-4 mb-8 content-input" style="padding-bottom: 6px;">
-                <input pInputText formControlName="confirmpassword" type="password" id="confirmpassword"
-                    class="flex-auto" autocomplete="off" />
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <i class="pi pi-verified"></i>
+                    </p-inputgroup-addon>
+                    <input pInputText formControlName="confirmpassword" type="password" id="confirmpassword"
+                        class="flex-auto" autocomplete="off" />
+                </p-inputgroup>
             </div>
             <p-message
-            *ngIf="formUpdateUser.get('confirmpassword')?.errors?.['senhasDiferentes'] && formUpdateUser.get('confirmpassword')?.touched"
-            severity="error" icon="pi pi-times-circle" styleClass="mb-2">As senhas devem ser iguais.</p-message>
+                *ngIf="formUpdateUser.get('confirmpassword')?.errors?.['senhasDiferentes'] && formUpdateUser.get('confirmpassword')?.touched"
+                severity="error" icon="pi pi-times-circle" styleClass="mb-2">As senhas devem ser iguais.</p-message>
         </div>
 
     </form>

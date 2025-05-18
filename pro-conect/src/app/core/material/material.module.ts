@@ -17,6 +17,8 @@ import { StyleClass } from 'primeng/styleclass';
 import { Menubar } from 'primeng/menubar';
 import { Dialog } from 'primeng/dialog';
 import { Message } from 'primeng/message';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 @NgModule({
   imports: [
@@ -35,14 +37,16 @@ import { Message } from 'primeng/message';
     SplitButton,
     IconField,
     InputIcon,
-    DrawerModule, 
-    ButtonModule, 
-    Ripple, 
-    AvatarModule, 
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
     Message,
+    InputGroupModule, 
+    InputGroupAddonModule,
   ],
   exports: [
     FocusTrapModule,
@@ -60,14 +64,16 @@ import { Message } from 'primeng/message';
     SplitButton,
     IconField,
     InputIcon,
-     DrawerModule, 
-    ButtonModule, 
-    Ripple, 
-    AvatarModule, 
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
     Message,
+    InputGroupModule,
+    InputGroupAddonModule,
   ]
 })
 export class MaterialModule { }
