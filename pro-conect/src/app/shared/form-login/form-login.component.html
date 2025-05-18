@@ -1,0 +1,32 @@
+<div class="card flex justify-center">
+    <div pFocusTrap class="w-full sm:w-100 flex flex-col gap-6 content">
+        <div class="input-component">
+            <p-iconfield>
+                <p-inputicon>
+                    <i class="pi pi-user"></i>
+                </p-inputicon>
+                <input type="text" pInputText id="input" [(ngModel)]="name" type="text" placeholder="Usuário"
+                    [pAutoFocus]="true" [fluid]="true" />
+            </p-iconfield>
+
+            <p-iconfield>
+                <p-inputicon>
+                    <i class="pi-exclamation-circle"> </i>
+                </p-inputicon>
+                <input type="text" pInputText id="email" [(ngModel)]="email" type="email" placeholder="Senha"
+                    [fluid]="true" />
+            </p-iconfield>
+
+            <div class="flex items-center gap-2">
+                <p-checkbox id="accept" [(ngModel)]="accept" name="accept" value="Accept" />
+                <label for="accept">Eu declaro que li e concordo com os termos de uso.</label>
+            </div>
+
+        </div>
+
+        <div class="button-component">
+            <p-button label="Realizar login" class="mt-5 width" styleClass="w-full" [loading]="loading" (click)="load()" />
+        </div>
+
+    </div>
+</div>

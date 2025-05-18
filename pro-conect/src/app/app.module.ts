@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './pages/home/home.module';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';  
-import {provideAnimations} from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
-import { ButtonModule } from 'primeng/button';  
+import { ButtonModule } from 'primeng/button';
+import { LoginModule } from './pages/login/login.module';
+import { Noir } from '../styles'; 
 
 @NgModule({
   declarations: [
@@ -20,20 +21,29 @@ import { ButtonModule } from 'primeng/button';
     SharedModule,
     HomeModule,
     ToastModule,
-    ButtonModule
+    ButtonModule,
+    LoginModule
 
   ],
-  exports:[
+  exports: [
     BrowserModule
   ],
   providers: [
     providePrimeNG({
+      ripple: true,
       theme: {
-        preset: Aura
+        preset: Noir,
+        options: {
+            darkModeSelector: '.my-app-dark',
+            cssLayer: {
+                name: 'primeng',
+                order: 'theme, base, primeng'
+            }
+        }
       }
     }),
     provideAnimations()
-    
+
   ],
   bootstrap: [AppComponent]
 })

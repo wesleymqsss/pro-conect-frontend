@@ -1,0 +1,23 @@
+.form {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.form-left {
+    width: 40%;
+    height: 75%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.form-rigth {
+    width: 40%;
+    height: 75%;
+    background-color: #FFF;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

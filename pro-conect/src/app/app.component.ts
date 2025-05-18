@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { PrimeNG } from 'primeng/config';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,16 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class AppComponent {
-  constructor(private messageService: MessageService) { }
+  constructor(private primeng: PrimeNG) {}
 
-  show() {
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
-  }
+    ngOnInit() {
+        this.primeng.ripple.set(true);
+    }
   title = 'pro-conect';
+  toggleDarkModel(){
+    const element = document.querySelector('html');
+    if(element != null){
+      element.classList.toggle('my-app-dark');
+    }
+  }
 }

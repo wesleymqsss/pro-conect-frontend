@@ -6,9 +6,13 @@ import { FormsModule } from "@angular/forms";
 import { PipesModule } from "../pipes/pipes.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { DirectivesModule } from "../directive/directives.module";
+import { FormLoginComponent } from './form-login/form-login.component';
+import { FormLoginLeftComponent } from './form-login-left/form-login-left.component';
 
 @NgModule({
     declarations: [
+        FormLoginComponent,
+        FormLoginLeftComponent
     ],
     imports: [
         CommonModule,
@@ -21,6 +25,8 @@ import { DirectivesModule } from "../directive/directives.module";
     ],
     exports: [
         FormsModule,
+        FormLoginComponent,
+        FormLoginLeftComponent
     ]
 })
 export class SharedModule { }
