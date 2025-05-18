@@ -10,6 +10,8 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { LoginModule } from './pages/login/login.module';
 import { Noir } from '../styles'; 
+import { provideHttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { Noir } from '../styles';
     BrowserModule
   ],
   providers: [
+    provideHttpClient(),
     providePrimeNG({
       ripple: true,
       theme: {
@@ -42,7 +45,8 @@ import { Noir } from '../styles';
         }
       }
     }),
-    provideAnimations()
+    provideAnimations(),
+    MessageService
 
   ],
   bootstrap: [AppComponent]

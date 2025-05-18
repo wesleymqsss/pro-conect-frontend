@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { PrimeNG } from 'primeng/config';
+import { SnackbarService } from './core/service/snackbar.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
   styleUrl: './app.component.scss',
-  providers: [MessageService]
 })
 export class AppComponent {
-  constructor(private primeng: PrimeNG) {}
+  constructor(private primeng: PrimeNG, private _snackbarService: SnackbarService) {}
 
     ngOnInit() {
         this.primeng.ripple.set(true);
     }
+
   title = 'pro-conect';
   toggleDarkModel(){
     const element = document.querySelector('html');

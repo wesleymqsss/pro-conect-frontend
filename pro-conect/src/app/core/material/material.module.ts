@@ -7,6 +7,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { Ripple } from 'primeng/ripple';
+import { Toast } from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { AutoFocusModule } from 'primeng/autofocus';
     IconFieldModule,
     InputIconModule,
     AutoFocusModule,
+    Ripple,
+    Toast
   ],
   exports: [
     FocusTrapModule,
@@ -28,6 +32,8 @@ import { AutoFocusModule } from 'primeng/autofocus';
     IconFieldModule,
     InputIconModule,
     AutoFocusModule,
+    Ripple,
+    Toast
   ]
 })
 export class MaterialModule { }
