@@ -4,11 +4,17 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
+import { IconField, IconFieldModule } from 'primeng/iconfield';
+import { InputIcon, InputIconModule } from 'primeng/inputicon';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { Ripple } from 'primeng/ripple';
 import { Toast } from 'primeng/toast';
+import { SplitButton } from 'primeng/splitbutton';
+import { Toolbar } from 'primeng/toolbar';
+import { DrawerModule } from 'primeng/drawer';
+import { AvatarModule } from 'primeng/avatar';
+import { StyleClass } from 'primeng/styleclass';
+
 
 @NgModule({
   imports: [
@@ -21,7 +27,17 @@ import { Toast } from 'primeng/toast';
     InputIconModule,
     AutoFocusModule,
     Ripple,
-    Toast
+    Toast,
+    Toolbar,
+    ButtonModule,
+    SplitButton,
+    IconField,
+    InputIcon,
+    DrawerModule, 
+    ButtonModule, 
+    Ripple, 
+    AvatarModule, 
+    StyleClass
   ],
   exports: [
     FocusTrapModule,
@@ -33,7 +49,17 @@ import { Toast } from 'primeng/toast';
     InputIconModule,
     AutoFocusModule,
     Ripple,
-    Toast
+    Toast,
+    Toolbar,
+    ButtonModule,
+    SplitButton,
+    IconField,
+    InputIcon,
+     DrawerModule, 
+    ButtonModule, 
+    Ripple, 
+    AvatarModule, 
+    StyleClass
   ]
 })
 export class MaterialModule { }

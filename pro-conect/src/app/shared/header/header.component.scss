@@ -1,0 +1,21 @@
+.header-login {
+    text-align: center;
+    font-weight: bold;
+    color: var(--p-violet-800);
+    font-size: 23px;
+}
+
+.info-user {
+    gap: 5px;
+    display: flex;
+    text-align: center;
+    font-weight: bold;
+    color: var(--p-violet-800);
+    font-size: 16px;
+    padding-right: 8px;
+
+    .bar {
+       background-color: var(--p-violet-800);
+       width: 2px; 
+    }
+}

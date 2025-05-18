@@ -28,7 +28,8 @@ import { HeaderComponent } from './header/header.component';
     exports: [
         FormsModule,
         FormLoginComponent,
-        FormLoginLeftComponent
+        FormLoginLeftComponent,
+        HeaderComponent
     ]
 })
 export class SharedModule { }

@@ -8,12 +8,16 @@ import { UserLogin } from '../interface/userLogin';
   providedIn: 'root'
 })
 export class LoginService {
-  private url = `${environment.api_url}/login`
+  private url = `${environment.api_url}/login/`
   
   constructor(private http : HttpClient) { }
 
   getUserLogin(username: string, password: string ): Observable<UserLogin>{
     let params = new HttpParams().set('username', username).set('password', password);
-    return this.http.get<UserLogin>(`${this.url}/find`, {params})
+    return this.http.get<UserLogin>(`${this.url}find`, {params})
+  }
+
+  getUserId(id: number): Observable<UserLogin>{
+    return this.http.get<UserLogin>(`${this.url + id}`);
   }
 }

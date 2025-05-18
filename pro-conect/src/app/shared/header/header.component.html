@@ -1,1 +1,68 @@
-<p>header works!</p>
+<div class="card">
+    <p-toolbar>
+        <ng-template pTemplate="start">
+            <p-button (click)="visible = true" size="large" class="mr-2" icon="pi pi-bars" />
+        </ng-template>
+
+        <ng-template pTemplate="center">
+            <div class="header-login">
+                <p>Pro-Connect</p>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="end">
+            <div class="info-user">
+                <span>
+                    {{ newUserLogin.role }}
+                </span>
+                <div class="bar"></div>
+                <span>
+                    {{ newUserLogin.username}}
+                </span>
+            </div>
+            <p-button icon="pi pi-user" text size="large" />
+        </ng-template>
+    </p-toolbar>
+</div>
+
+<div class="card flex justify-center">
+    <p-drawer #drawerRef [(visible)]="visible">
+
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+        <div class="header-login">
+            <p>Pro-Connect</p>
+        </div>
+    </p-drawer>
+</div>
