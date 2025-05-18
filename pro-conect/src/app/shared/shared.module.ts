@@ -8,11 +8,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { DirectivesModule } from "../directive/directives.module";
 import { FormLoginComponent } from './form-login/form-login.component';
 import { FormLoginLeftComponent } from './form-login-left/form-login-left.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
     declarations: [
         FormLoginComponent,
-        FormLoginLeftComponent
+        FormLoginLeftComponent,
+        HeaderComponent
     ],
     imports: [
         CommonModule,

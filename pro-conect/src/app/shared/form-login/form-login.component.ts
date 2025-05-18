@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../core/service/login.service';
 import { UserLogin } from '../../core/interface/userLogin';
-import { MessageService } from 'primeng/api';
 import { SnackbarService } from '../../core/service/snackbar.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +16,9 @@ export class FormLoginComponent {
 
   constructor(
     private readonly _userLoginService: LoginService,
-    private readonly _snackbarService: SnackbarService) { }
+    private readonly _snackbarService: SnackbarService,
+    private readonly _router: Router
+    ) { }
 
   name: string = '';
 
@@ -45,9 +47,14 @@ export class FormLoginComponent {
       this._userLoginService.getUserLogin(this.name, this.email).subscribe({
         next: (responseUserLogin) => {
           this.userLogin = responseUserLogin;
+          this.redirect(this.userLogin.user.id);
         }, error: (err) => {
           this._snackbarService.showError('Usuário não encontrado. Favor, verificar dados de login!');
         }
       })
+  }
+
+  redirect(idUser: number){
+    this._router.navigate(['/home', idUser]);
   }
 }
