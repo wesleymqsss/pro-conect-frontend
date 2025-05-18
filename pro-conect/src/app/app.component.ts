@@ -9,7 +9,7 @@ import { SnackbarService } from './core/service/snackbar.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(private primeng: PrimeNG, private _snackbarService: SnackbarService) {}
+  constructor(private primeng: PrimeNG) {}
 
     ngOnInit() {
         this.primeng.ripple.set(true);

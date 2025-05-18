@@ -21,7 +21,7 @@
 }
 
 form {
-    height: 40%;
+    height: 53%;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -45,17 +45,25 @@ form {
 }
 
 .content-input {
-    width: 70%;
-
-    .label-input {
-        font-weight: 600;
-        color: #7a7a7a;
-    }
+    width: 100%;
 }
 
 .content-button {
     gap: 20px;
-    height: 53%;
+    height: 39%;
     display: flex;
     align-items: end;
+}
+
+.display-flex {
+    display: block;
+}
+
+.input-row {
+    width: 80%;
+}
+
+.label-input {
+    font-weight: 600;
+    color: var(--p-violet-800);
 }

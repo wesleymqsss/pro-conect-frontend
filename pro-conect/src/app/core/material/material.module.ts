@@ -16,6 +16,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { StyleClass } from 'primeng/styleclass';
 import { Menubar } from 'primeng/menubar';
 import { Dialog } from 'primeng/dialog';
+import { Message } from 'primeng/message';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { Dialog } from 'primeng/dialog';
     StyleClass,
     Menubar,
     Dialog,
+    Message,
   ],
   exports: [
     FocusTrapModule,
@@ -65,6 +67,7 @@ import { Dialog } from 'primeng/dialog';
     StyleClass,
     Menubar,
     Dialog,
+    Message,
   ]
 })
 export class MaterialModule { }
