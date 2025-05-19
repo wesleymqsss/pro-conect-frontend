@@ -1,23 +1,16 @@
 <div class="card">
     <p-toolbar>
         <ng-template pTemplate="start">
-            <p-button (click)="visible = true" size="large" class="mr-2" icon="pi pi-bars" />
+            <p-menubar [model]="items" />
         </ng-template>
-
-        <ng-template pTemplate="center">
-            <div class="header-login">
-                <p>Pro-Connect</p>
-            </div>
-        </ng-template>
-
         <ng-template pTemplate="end">
             <div class="info-user">
                 <span>
-                    {{ newUserLogin.role }}
+                    {{ newUserLogin.role.toLowerCase() }}
                 </span>
                 <div class="bar"></div>
                 <span>
-                    {{ newUserLogin.username}}
+                    {{ newUserLogin.username }}
                 </span>
             </div>
             <p-button icon="pi pi-user" text size="large" />
@@ -25,44 +18,38 @@
     </p-toolbar>
 </div>
 
-<div class="card flex justify-center">
-    <p-drawer #drawerRef [(visible)]="visible">
+<p-dialog header="Editar Perfil" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [(visible)]="visibleEditProfile" [style]="{ width: '40rem', height: '30rem'}">
+    <span class="text-header">{{newUserLogin.username}}</span>
+    <form [formGroup]="formUpdateUser" class="content-form">
+        <div class="input-row">
+            <label for="username" class="label-input">Usuário:</label>
+            <div class="flex items-center gap-4 mb-4 content-input">
+                <input pInputText formControlName="username" id="username" class="flex-auto" autocomplete="off" />
+            </div>
+        </div>
+        <div class="input-row">
+            <label for="email" class="label-input">Senha: </label>
+            <div class="flex items-center gap-4  content-input">
+                <input pInputText formControlName="password" id="password" type="password" class="flex-auto"
+                    autocomplete="off" />
+            </div>
+        </div>
+        
+        <div class="input-row" >
+            <label for="email" class="label-input">Confirmar senha:</label>
+            <div class="flex items-center gap-4 mb-8 content-input" style="padding-bottom: 6px;">
+                <input pInputText formControlName="confirmpassword" type="password" id="confirmpassword"
+                    class="flex-auto" autocomplete="off" />
+            </div>
+            <p-message
+            *ngIf="formUpdateUser.get('confirmpassword')?.errors?.['senhasDiferentes'] && formUpdateUser.get('confirmpassword')?.touched"
+            severity="error" icon="pi pi-times-circle" styleClass="mb-2">As senhas devem ser iguais.</p-message>
+        </div>
 
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-        <div class="header-login">
-            <p>Pro-Connect</p>
-        </div>
-    </p-drawer>
-</div>
+    </form>
+    <div class="flex justify-end gap-2 content-button">
+        <p-button label="Cancelar" severity="secondary" (click)="visibleEditProfile = false" />
+        <p-button label="Salvar Informações" (click)="submitUpdate()" />
+    </div>
+</p-dialog>

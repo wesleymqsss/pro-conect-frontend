@@ -14,8 +14,10 @@ import { Toolbar } from 'primeng/toolbar';
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClass } from 'primeng/styleclass';
+import { Menubar } from 'primeng/menubar';
+import { Dialog } from 'primeng/dialog';
+import { Message } from 'primeng/message';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { Chip } from 'primeng/chip';
 import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -44,12 +46,14 @@ import { TableModule } from 'primeng/table';
     Ripple,
     AvatarModule,
     StyleClass,
+    Menubar,
+    Dialog,
+    Message,
     MultiSelectModule,
-    Chip,
     CarouselModule,
     CardModule,
-    DialogModule,
-    TableModule
+    TableModule,
+    DialogModule
   ],
   exports: [
     FocusTrapModule,
@@ -72,12 +76,14 @@ import { TableModule } from 'primeng/table';
     Ripple,
     AvatarModule,
     StyleClass,
+    Menubar,
+    Dialog,
+    Message,
     MultiSelectModule,
-    Chip,
     CarouselModule,
     CardModule,
-    DialogModule,
-    TableModule
+    TableModule,
+    DialogModule
   ]
 })
 export class MaterialModule { }
