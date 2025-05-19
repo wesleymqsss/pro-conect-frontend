@@ -9,27 +9,33 @@ import { DirectivesModule } from "../directive/directives.module";
 import { FormLoginComponent } from './form-login/form-login.component';
 import { FormLoginLeftComponent } from './form-login-left/form-login-left.component';
 import { HeaderComponent } from './header/header.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { CardDashboardComponent } from './card-dashboard/card-dashboard.component';
 
 @NgModule({
-    declarations: [
-        FormLoginComponent,
-        FormLoginLeftComponent,
-        HeaderComponent
-    ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterModule,
-        FormsModule,
-        BrowserModule,
-        PipesModule,
-        DirectivesModule
-    ],
-    exports: [
-        FormsModule,
-        FormLoginComponent,
-        FormLoginLeftComponent,
-        HeaderComponent
-    ]
+  declarations: [
+    FormLoginComponent,
+    FormLoginLeftComponent,
+    HeaderComponent,
+    UserPanelComponent,
+    CardDashboardComponent
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    FormsModule,
+    BrowserModule,
+    PipesModule,
+    DirectivesModule
+  ],
+  exports: [
+    FormsModule,
+    FormLoginComponent,
+    FormLoginLeftComponent,
+    HeaderComponent,
+    UserPanelComponent,
+    CardDashboardComponent
+  ]
 })
 export class SharedModule { }

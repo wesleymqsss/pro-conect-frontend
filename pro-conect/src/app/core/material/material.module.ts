@@ -14,6 +14,12 @@ import { Toolbar } from 'primeng/toolbar';
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClass } from 'primeng/styleclass';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { Chip } from 'primeng/chip';
+import { CarouselModule } from 'primeng/carousel';
+import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -33,11 +39,17 @@ import { StyleClass } from 'primeng/styleclass';
     SplitButton,
     IconField,
     InputIcon,
-    DrawerModule, 
-    ButtonModule, 
-    Ripple, 
-    AvatarModule, 
-    StyleClass
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
+    StyleClass,
+    MultiSelectModule,
+    Chip,
+    CarouselModule,
+    CardModule,
+    DialogModule,
+    TableModule
   ],
   exports: [
     FocusTrapModule,
@@ -55,11 +67,17 @@ import { StyleClass } from 'primeng/styleclass';
     SplitButton,
     IconField,
     InputIcon,
-     DrawerModule, 
-    ButtonModule, 
-    Ripple, 
-    AvatarModule, 
-    StyleClass
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
+    StyleClass,
+    MultiSelectModule,
+    Chip,
+    CarouselModule,
+    CardModule,
+    DialogModule,
+    TableModule
   ]
 })
 export class MaterialModule { }
