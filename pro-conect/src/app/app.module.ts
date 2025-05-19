@@ -9,7 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { LoginModule } from './pages/login/login.module';
-import { Noir } from '../styles'; 
+import { Noir } from '../styles';
 import { provideHttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 
@@ -37,11 +37,11 @@ import { MessageService } from 'primeng/api';
       theme: {
         preset: Noir,
         options: {
-            darkModeSelector: '.my-app-dark',
-            cssLayer: {
-                name: 'primeng',
-                order: 'theme, base, primeng'
-            }
+          darkModeSelector: '.my-app-dark',
+          cssLayer: {
+            name: 'primeng',
+            order: 'theme, base, primeng'
+          }
         }
       }
     }),
