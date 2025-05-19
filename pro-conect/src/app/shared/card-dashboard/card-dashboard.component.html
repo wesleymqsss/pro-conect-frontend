@@ -1,0 +1,22 @@
+<div class="card-top">
+  <div class="cont-item">
+    <div
+      class="item-card-top"
+      style="display: flex; align-items: center; gap: 4px"
+    >
+      <p class="style-titulo">{{ title }}</p>
+      <i
+        class="pi pi-angle-right"
+        style="font-size: 1rem; color: var(--p-violet-800)"
+      ></i>
+    </div>
+  </div>
+  <div class="cont-item">
+    <p class="conta-card">{{ value }}</p>
+    <i
+      class="pi"
+      [ngClass]="icon"
+      style="font-size: 3rem; color: var(--p-violet-800)"
+    ></i>
+  </div>
+</div>
