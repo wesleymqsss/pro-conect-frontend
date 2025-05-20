@@ -28,6 +28,8 @@ import { ToggleButton } from 'primeng/togglebutton';
 import { AccordionModule } from 'primeng/accordion';
 import { ChartModule } from 'primeng/chart';
 
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 @NgModule({
   imports: [
@@ -50,6 +52,10 @@ import { ChartModule } from 'primeng/chart';
     ButtonModule,
     Ripple,
     AvatarModule,
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
@@ -64,7 +70,9 @@ import { ChartModule } from 'primeng/chart';
     ToggleButton,
     AccordionModule,
     ChartModule
-
+    ,
+    InputGroupModule,
+    InputGroupAddonModule,
   ],
   exports: [
     FocusTrapModule,
@@ -86,6 +94,10 @@ import { ChartModule } from 'primeng/chart';
     ButtonModule,
     Ripple,
     AvatarModule,
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
@@ -99,7 +111,9 @@ import { ChartModule } from 'primeng/chart';
     RatingModule,
     ToggleButton,
     AccordionModule,
-    ChartModule
+    ChartModule,
+    InputGroupModule,
+    InputGroupAddonModule,
   ]
 })
 export class MaterialModule { }
