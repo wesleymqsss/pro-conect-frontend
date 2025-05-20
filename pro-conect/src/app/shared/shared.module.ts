@@ -11,6 +11,7 @@ import { FormLoginLeftComponent } from './form-login-left/form-login-left.compon
 import { HeaderComponent } from './header/header.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { CardDashboardComponent } from './card-dashboard/card-dashboard.component';
+import { EfficiencyGraphComponent } from './efficiency-graph/efficiency-graph.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CardDashboardComponent } from './card-dashboard/card-dashboard.componen
     FormLoginLeftComponent,
     HeaderComponent,
     UserPanelComponent,
-    CardDashboardComponent
+    CardDashboardComponent,
+    EfficiencyGraphComponent
   ],
   imports: [
     CommonModule,

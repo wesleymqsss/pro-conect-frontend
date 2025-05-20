@@ -22,6 +22,11 @@ import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
+import { ToggleButton } from 'primeng/togglebutton';
+import { AccordionModule } from 'primeng/accordion';
+import { ChartModule } from 'primeng/chart';
 
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
@@ -60,7 +65,13 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     CardModule,
     TableModule,
     DialogModule,
-    InputGroupModule, 
+    TagModule,
+    RatingModule,
+    ToggleButton,
+    AccordionModule,
+    ChartModule
+    ,
+    InputGroupModule,
     InputGroupAddonModule,
   ],
   exports: [
@@ -96,6 +107,11 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     CardModule,
     TableModule,
     DialogModule,
+    TagModule,
+    RatingModule,
+    ToggleButton,
+    AccordionModule,
+    ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
   ]

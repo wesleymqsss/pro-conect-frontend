@@ -4,8 +4,16 @@
   display: flex;
   flex-direction: column;
   border-radius: 9px;
+  margin-bottom: 6%;
 }
 .cont-card-panel {
+  width: 95%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  margin: 1% auto;
+}
+.cont-graph {
   width: 95%;
   margin-top: 1%;
   display: flex;
@@ -47,19 +55,18 @@
   color: var(--p-gray-800);
 }
 
-// .card {
-//   display: flex;
-//   width: 100%;
-//   border: 1px solid var(--p-violet-800);
-//   border-radius: 9px;
-//   gap: 1%;
-// }
-
 .card-item {
   width: 32%;
   height: 100px;
   margin: 1% auto;
 }
+
+.cont-btn {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+}
+
 .panel-container {
   width: 95%;
   margin: 1% auto;
@@ -67,7 +74,7 @@
   border-radius: 9px;
 }
 
-.carrousel-cont {
+.cont-border {
   border: 1px solid var(--p-violet-800);
   border-radius: 9px;
 }
@@ -96,4 +103,9 @@
 
 .botao {
   margin-top: 2px;
+}
+
+.col-table {
+  width: 50%;
+  text-align: center;
 }

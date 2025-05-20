@@ -17,6 +17,8 @@ export class UserPanelComponent implements OnInit {
   turmas!: CardTurma[];
   alunos!: AlunoResponse[];
   visible: boolean = false;
+  presenca: boolean = false;
+  alunoSelecionado!: any;
 
   constructor(private readonly _alunoService: AlunoService) { }
 
@@ -185,6 +187,21 @@ export class UserPanelComponent implements OnInit {
     })
   }
 
+  obterAprovadoEReprovado(nota: number) {
+    if (nota >= 6) {
+      return 'success';
+    }
+    return 'warn';
+  }
+
+  mostrarFaltas(id: number) {
+    if (this.alunoSelecionado === id) {
+      this.alunoSelecionado = null; // fecha se clicar novamente
+    } else {
+      this.alunoSelecionado = id; // abre apenas o clicado
+    }
+  }
+
   onModalAlunos() {
     this.visible = true;
   }
@@ -193,3 +210,4 @@ export class UserPanelComponent implements OnInit {
     this.visible = true;
   }
 }
+
