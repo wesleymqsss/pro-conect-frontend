@@ -7,6 +7,18 @@
       [icon]="cardItem.icon"
     ></app-card-dashboard>
   </div>
+  <div class="cont-graph">
+    <div style="display: flex; align-items: center; gap: 1%">
+      <h2 class="titulo">Desempenho por Disciplina</h2>
+      <i
+        class="pi pi-chart-bar"
+        style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"
+      ></i>
+    </div>
+    <div class="cont-border">
+      <app-efficiency-graph></app-efficiency-graph>
+    </div>
+  </div>
   <div class="panel-container">
     <div style="display: flex; align-items: center; gap: 1%">
       <h2 class="titulo">Turmas</h2>
@@ -16,7 +28,7 @@
       ></i>
     </div>
 
-    <div class="carrousel-cont">
+    <div class="cont-border">
       <p-carousel
         [value]="turmas"
         [numVisible]="4"
@@ -52,7 +64,6 @@
                   icon="pi pi-file-edit"
                   label="Criar Prova"
                   class="botao"
-                  (click)="onModalProva()"
                 ></button>
               </div>
             </p-card>
@@ -77,20 +88,22 @@
           [rowsPerPageOptions]="[5, 10, 20]"
         >
           <ng-template #header>
-            <tr>
-              <th pSortableColumn="alunoNome" style="width: 20%">
+            <tr style="width: 100%">
+              <th pSortableColumn="alunoNome" class="col-table">
                 Name <p-sortIcon field="alunoNome" />
               </th>
-              <th pSortableColumn="matricula" style="width: 20%">
+              <th pSortableColumn="matricula" class="col-table">
                 Matricula <p-sortIcon field="matricula" />
               </th>
-              <th pSortableColumn="curso" style="width: 20%">
+              <th pSortableColumn="curso" class="col-table">
                 Curso <p-sortIcon field="curso" />
               </th>
-              <th pSortableColumn="mediaFinal" style="width: 20%">
-                Nota Final <p-sortIcon field="mediaFinal" />
+              <th pSortableColumn="mediaFinal" class="col-table">
+                Nota <p-sortIcon field="mediaFinal" />
               </th>
-              <th style="width: 20%">Ações</th>
+              <th class="col-table">Status</th>
+              <th class="col-table">Frequência</th>
+              <th class="col-table">Ações</th>
             </tr>
           </ng-template>
           <ng-template #body let-aluno>
@@ -98,7 +111,68 @@
               <td>{{ aluno.alunoNome }}</td>
               <td>{{ aluno.matricula }}</td>
               <td>{{ aluno.curso }}</td>
-              <td>{{ aluno.mediaFinal }}</td>
+              <td>
+                <p-tag
+                  [value]="aluno.mediaFinal"
+                  [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
+                ></p-tag>
+              </td>
+              <td>
+                <p-tag
+                  [value]="aluno.mediaFinal"
+                  [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
+                ></p-tag>
+              </td>
+              <td>
+                <div class="card flex justify-center">
+                  <p-togglebutton
+                    [(ngModel)]="aluno.presenca"
+                    onLabel="Presente"
+                    offLabel="Ausente"
+                    onIcon="pi pi-thumbs-up"
+                    offIcon="pi pi-thumbs-down"
+                    onIcon="pi pi-thumbs-up"
+                    offIcon="pi pi-thumbs-down"
+                    styleClass="w-36"
+                    ariaLabel="Do you confirm"
+                  />
+                </div>
+              </td>
+              <td>
+                <div class="cont-btn">
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi-file-edit"
+                    label="Salvar"
+                    severity="secondary"
+                    class="botao"
+                  ></button>
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi-user-minus"
+                    label="Faltas"
+                    class="botao"
+                    (click)="mostrarFaltas(aluno.alunoId)"
+                  ></button>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="alunoSelecionado === aluno.alunoId">
+              <td colspan="7">
+                <p-accordion>
+                  <p-accordionTab header="Histórico de Faltas">
+                    <!-- conteúdo dinâmico aqui -->
+                    <ul>
+                      <li *ngFor="let aluno of alunos">
+                        {{ aluno.curso }} -
+                        {{ aluno.presenca }}
+                      </li>
+                    </ul>
+                  </p-accordionTab>
+                </p-accordion>
+              </td>
             </tr>
           </ng-template>
         </p-table>
