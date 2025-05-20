@@ -75,18 +75,29 @@
     <p-dialog
       header="Alunos da Turma"
       [(visible)]="visible"
-      [style]="{ width: '50vw' }"
+      [style]="{ width: '50vw', height: '76vh' }"
       [modal]="true"
       [closable]="true"
     >
       <div class="card">
         <p-table
+          #tableAlunos
           [value]="alunos"
           [paginator]="true"
           [rows]="5"
           [tableStyle]="{ 'min-width': '50rem' }"
           [rowsPerPageOptions]="[5, 10, 20]"
         >
+          <ng-template #caption>
+            <div class="flex">
+              <p-iconfield iconPosition="left" class="ml-auto">
+                <p-inputicon>
+                  <i class="pi pi-search"></i>
+                </p-inputicon>
+                <input pInputText type="text" placeholder="Pesquisar" />
+              </p-iconfield>
+            </div>
+          </ng-template>
           <ng-template #header>
             <tr style="width: 100%">
               <th pSortableColumn="alunoNome" class="col-table">
@@ -143,7 +154,7 @@
                   <button
                     pButton
                     type="button"
-                    icon="pi pi-file-edit"
+                    icon="pi pi pi-save"
                     label="Salvar"
                     severity="secondary"
                     class="botao"
