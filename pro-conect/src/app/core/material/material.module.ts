@@ -22,6 +22,11 @@ import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
+import { ToggleButton } from 'primeng/togglebutton';
+import { AccordionModule } from 'primeng/accordion';
+import { ChartModule } from 'primeng/chart';
 
 
 @NgModule({
@@ -53,7 +58,13 @@ import { TableModule } from 'primeng/table';
     CarouselModule,
     CardModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    TagModule,
+    RatingModule,
+    ToggleButton,
+    AccordionModule,
+    ChartModule
+
   ],
   exports: [
     FocusTrapModule,
@@ -83,7 +94,12 @@ import { TableModule } from 'primeng/table';
     CarouselModule,
     CardModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    TagModule,
+    RatingModule,
+    ToggleButton,
+    AccordionModule,
+    ChartModule
   ]
 })
 export class MaterialModule { }
