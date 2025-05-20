@@ -13,7 +13,6 @@ export function confirmarSenharIguais(senhaField: string, confirmarField: string
             if(confirmarSenha?.hasError('senhasDiferentes')) {
                 confirmarSenha.setErrors(null);
             }
-
             return null;
         }
     }
