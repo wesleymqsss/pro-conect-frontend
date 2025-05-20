@@ -23,6 +23,8 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 @NgModule({
   imports: [
@@ -45,6 +47,10 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     Ripple,
     AvatarModule,
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
@@ -53,7 +59,9 @@ import { TableModule } from 'primeng/table';
     CarouselModule,
     CardModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    InputGroupModule, 
+    InputGroupAddonModule,
   ],
   exports: [
     FocusTrapModule,
@@ -75,6 +83,10 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     Ripple,
     AvatarModule,
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
@@ -83,7 +95,9 @@ import { TableModule } from 'primeng/table';
     CarouselModule,
     CardModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    InputGroupModule,
+    InputGroupAddonModule,
   ]
 })
 export class MaterialModule { }
