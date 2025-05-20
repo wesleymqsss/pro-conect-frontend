@@ -17,6 +17,12 @@ import { StyleClass } from 'primeng/styleclass';
 import { Menubar } from 'primeng/menubar';
 import { Dialog } from 'primeng/dialog';
 import { Message } from 'primeng/message';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CarouselModule } from 'primeng/carousel';
+import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
@@ -41,10 +47,19 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ButtonModule,
     Ripple,
     AvatarModule,
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
     Message,
+    MultiSelectModule,
+    CarouselModule,
+    CardModule,
+    TableModule,
+    DialogModule,
     InputGroupModule, 
     InputGroupAddonModule,
   ],
@@ -68,10 +83,19 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ButtonModule,
     Ripple,
     AvatarModule,
+    DrawerModule,
+    ButtonModule,
+    Ripple,
+    AvatarModule,
     StyleClass,
     Menubar,
     Dialog,
     Message,
+    MultiSelectModule,
+    CarouselModule,
+    CardModule,
+    TableModule,
+    DialogModule,
     InputGroupModule,
     InputGroupAddonModule,
   ]

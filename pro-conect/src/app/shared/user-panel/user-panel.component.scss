@@ -1,0 +1,99 @@
+.cont-pai-panel {
+  width: 95%;
+  margin: 1% auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 9px;
+}
+.cont-card-panel {
+  width: 95%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  margin: 1% auto;
+}
+
+.card-turma {
+  width: 100%;
+  display: flex;
+  gap: 1%;
+  background-color: #ffffff;
+  border-radius: 9px;
+}
+
+.card-item-turma {
+  width: 30%;
+  border: 1px solid black;
+}
+.cont-header-panel {
+  width: 95%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.cont-header-item {
+  width: 95%;
+  margin: auto;
+}
+.cont-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.style-titulo {
+  color: var(--p-gray-800);
+}
+
+// .card {
+//   display: flex;
+//   width: 100%;
+//   border: 1px solid var(--p-violet-800);
+//   border-radius: 9px;
+//   gap: 1%;
+// }
+
+.card-item {
+  width: 32%;
+  height: 100px;
+  margin: 1% auto;
+}
+.panel-container {
+  width: 95%;
+  margin: 1% auto;
+  box-sizing: border-box;
+  border-radius: 9px;
+}
+
+.carrousel-cont {
+  border: 1px solid var(--p-violet-800);
+  border-radius: 9px;
+}
+
+.titulo {
+  margin-bottom: 1rem;
+  color: var(--p-gray-800);
+}
+
+.card-wrapper {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+:host ::ng-deep .p-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.botao {
+  margin-top: 2px;
+}
