@@ -5,4 +5,5 @@ export interface AlunoResponse {
   matricula: string,
   curso: string,
   mediaFinal: number;
+  presenca: boolean
 }
