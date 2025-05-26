@@ -122,13 +122,12 @@
       </div>
     </p-dialog>
 
-    <p-dialog header="Avaliações" [(visible)]="visibleModalProva" [style]="{ width: '35vw', height: '35vh' }"
+    <p-dialog header="Avaliações" [(visible)]="visibleModalProva" [style]="{ width: '55vw', height: '44vh' }"
       [modal]="true" [closable]="true">
       <div class="card">
-        <div class="">
           <div class="card-content-prova">
             <div pAnimateOnScroll enterClass="animate-enter fade-in-10 zoom-in-50 animate-duration-1000"
-              class="flex flex-col card-1 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
+              class="flex flex-col card-1 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4" (click)="routerPageCreateProva()">
               <div class="header-card">
                 <div class="content-icon">
                   <i class="pi pi-file-plus !text-2xl"></i>
@@ -150,7 +149,6 @@
             </div>
           </div>
         </div>
-      </div>
     </p-dialog>
   </div>
 </div>

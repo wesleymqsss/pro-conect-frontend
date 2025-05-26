@@ -12,6 +12,7 @@ import { LoginModule } from './pages/login/login.module';
 import { Noir } from '../styles';
 import { provideHttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { NovaAvaliacaoModule } from './pages/nova-avaliacao/nova-avaliacao.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MessageService } from 'primeng/api';
     HomeModule,
     ToastModule,
     ButtonModule,
-    LoginModule
+    LoginModule,
+    NovaAvaliacaoModule
 
   ],
   exports: [

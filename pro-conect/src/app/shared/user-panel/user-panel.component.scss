@@ -151,6 +151,7 @@
  }
 
  .card-1 {
+   height: 40%;
    width: 45%;
    background-color: var(--p-violet-600);
    background-image: linear-gradient(to bottom left, var(--p-violet-300), var(--p-violet-500), var(--p-violet-800));
@@ -163,23 +164,24 @@
 
  .card-1:hover {
    cursor: pointer;
-  background-image: linear-gradient(to bottom left, var(--p-purple-300), var(--p-purple-400), var(--p-purple-600));
+   background-image: linear-gradient(to bottom left, var(--p-purple-300), var(--p-purple-500), var(--p-purple-800));
    transition: 2s;
  }
 
  .card-2 {
+   height: 70%;
    width: 45%;
    background-color: var(--p-purple-600);
-    background-image: linear-gradient(to bottom left, var(--p-purple-300), var(--p-purple-500), var(--p-purple-800));
+   background-image: linear-gradient(to bottom left, var(--p-purple-300), var(--p-purple-500), var(--p-purple-800));
    color: #FFF;
    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
    padding: 1%;
    border-radius: 8px;
- } 
+ }
 
  .card-2:hover {
    cursor: pointer;
-  background-image: linear-gradient(to bottom left, var(--p-violet-300), var(--p-violet-500), var(--p-violet-800));
+   background-image: linear-gradient(to bottom left, var(--p-violet-300), var(--p-violet-500), var(--p-violet-800));
    transition: 1s;
  }
 

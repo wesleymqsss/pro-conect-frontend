@@ -4,6 +4,7 @@ import { AlunoListResponse } from '../../core/types/aluno-list-response.type';
 import { TurmaListResponse } from '../../core/types/turma-list-response.type';
 import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-response.type';
 import { Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-panel',
@@ -23,7 +24,10 @@ export class UserPanelComponent implements OnInit, OnChanges {
   presenca: boolean = false;
   alunoSelecionado!: any;
 
-  constructor(private readonly _alunoService: AlunoService) { }
+  constructor(
+    private readonly _alunoService: AlunoService,
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
     this.populandoCarrosel();
@@ -89,6 +93,9 @@ export class UserPanelComponent implements OnInit, OnChanges {
 
   }
 
+  routerPageCreateProva() {
+    this._router.navigate(['/nova-avaliacao']);
+  }
 
   obterAprovadoEReprovado(nota: number) {
     if (nota >= 6) {
