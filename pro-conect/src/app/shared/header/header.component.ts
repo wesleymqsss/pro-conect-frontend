@@ -6,6 +6,7 @@ import { LoginService } from '../../core/service/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackbarService } from '../../core/service/snackbar.service';
 import { confirmarSenharIguais } from '../../validators/passwordValidators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,8 @@ export class HeaderComponent {
   constructor(
     private _fb: FormBuilder,
     private _loginService: LoginService,
-    private _snackbarService: SnackbarService) {
+    private _snackbarService: SnackbarService,
+    private _router: Router) {
   }
 
   closeCallback(e: any): void {
@@ -61,13 +63,19 @@ export class HeaderComponent {
           {
             label: 'Sair',
             icon: 'pi pi-sign-out',
-            routerLink: ['/']
+            command: () => this.logout()
 
           },
         ]
       },
     ]
   }
+
+  logout(): void {
+    this._loginService.logout();
+    this._router.navigate(['']);
+  }
+  
   createForm() {
     this.formUpdateUser = this._fb.group(
       {

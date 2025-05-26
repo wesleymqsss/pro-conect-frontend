@@ -6,6 +6,7 @@ import { AlunoService } from '../../core/service/aluno.service';
 import { AlunoListResponse } from '../../core/types/aluno-list-response.type';
 import { CardDashboardService } from '../../core/service/card-dashboard.service';
 import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-response.type';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,10 @@ export class HomeComponent {
   userLogin!: UserLogin;
   alunos!: AlunoListResponse;
   cards!: CardDashboardListResponse;
+  currentUser: UserLogin | null = null;
+  isLoggedIn: boolean = false;
+  private userSubscription!: Subscription;
+  private loginStatusSubscription!: Subscription;
 
   constructor(
     private readonly _route: ActivatedRoute,
@@ -27,22 +32,29 @@ export class HomeComponent {
   ) { }
 
   ngOnInit() {
-    this.idUser();
     this.getStudents();
     this.getCardsDashboard();
+    this.getUser()
+
   }
 
-  idUser() {
-    this.userId = this._route.snapshot.paramMap.get('id')!;
-    const userIdInt = parseInt(this.userId);
-    this.getUser(userIdInt);
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.loginStatusSubscription) {
+      this.loginStatusSubscription.unsubscribe();
+    }
   }
 
-  getUser(id: number) {
-    this._loginService.getUserId(id).subscribe({
-      next: (responseUserLogin) => {
-        this.userLogin = responseUserLogin;
-      }
+  getUser() {
+    this.userSubscription = this._loginService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+      console.log('sou o usuario logado na HOME', this.currentUser)
+    });
+
+    this.loginStatusSubscription = this._loginService.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
     });
   }
 
