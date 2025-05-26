@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-card-dashboard',
@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-dashboard.component.scss'
 })
 export class CardDashboardComponent {
-  @Input() icon!: string;
-  @Input() title!: string;
+  @Input() tipo!: string;
   @Input() value!: string | number;
 }
