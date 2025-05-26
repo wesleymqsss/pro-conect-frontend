@@ -30,6 +30,8 @@ import { ChartModule } from 'primeng/chart';
 import { AnimateOnScroll } from 'primeng/animateonscroll';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { EditorModule } from 'primeng/editor';
+import { Select } from 'primeng/select';
 
 @NgModule({
   imports: [
@@ -72,7 +74,9 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
-    AnimateOnScroll
+    AnimateOnScroll,
+    EditorModule,
+    Select
   ],
   exports: [
     FocusTrapModule,
@@ -114,7 +118,9 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
-    AnimateOnScroll
+    AnimateOnScroll,
+    EditorModule,
+    Select
   ]
 })
 export class MaterialModule { }
