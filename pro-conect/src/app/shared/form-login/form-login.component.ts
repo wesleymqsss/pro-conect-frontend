@@ -18,7 +18,7 @@ export class FormLoginComponent {
     private readonly _userLoginService: LoginService,
     private readonly _snackbarService: SnackbarService,
     private readonly _router: Router
-    ) { }
+  ) { }
 
   name: string = '';
 
@@ -34,7 +34,6 @@ export class FormLoginComponent {
       if (this.accept !== false) {
         this.getUserLogin();
       } else {
-        console.log('sou o termo de falso', this.accept);
         this._snackbarService.showWarn('Favor, aceitar termos de uso!');
       }
 
@@ -43,18 +42,17 @@ export class FormLoginComponent {
   }
 
   getUserLogin() {
-      console.log('sou o termo de verdadeiro', this.accept);
-      this._userLoginService.getUserLogin(this.name, this.email).subscribe({
-        next: (responseUserLogin) => {
-          this.userLogin = responseUserLogin;
-          this.redirect(this.userLogin.user.id);
-        }, error: (err) => {
-          this._snackbarService.showError('Usuário não encontrado. Favor, verificar dados de login!');
-        }
-      })
+    this._userLoginService.getUserLogin(this.name, this.email).subscribe({
+      next: (responseUserLogin) => {
+        this.userLogin = responseUserLogin;
+        this.redirect(this.userLogin.user.id);
+      }, error: (err) => {
+        this._snackbarService.showError('Usuário não encontrado. Favor, verificar dados de login!');
+      }
+    })
   }
 
-  redirect(idUser: number){
+  redirect(idUser: number) {
     this._router.navigate(['/home', idUser]);
   }
 }

@@ -1,12 +1,15 @@
 import { NgModule } from "@angular/core";
 import { CapitalizeFirstPipe } from "./capitalize-first-pipe.pipe";
+import { CardDashboardIconPipe } from "./card-dashboard-icon.pipe";
 
 @NgModule({
   declarations: [
-    CapitalizeFirstPipe
+    CapitalizeFirstPipe,
+    CardDashboardIconPipe
   ],
   exports: [
-    CapitalizeFirstPipe
+    CapitalizeFirstPipe,
+    CardDashboardIconPipe
   ],
 })
 export class PipesModule { }
