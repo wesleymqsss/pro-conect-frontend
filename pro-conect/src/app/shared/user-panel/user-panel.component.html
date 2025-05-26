@@ -2,9 +2,8 @@
   <div class="cont-header-panel">
     <app-card-dashboard
       *ngFor="let cardItem of cards"
-      [title]="cardItem.title"
+      [tipo]="cardItem.tipo"
       [value]="cardItem.value"
-      [icon]="cardItem.icon"
     ></app-card-dashboard>
   </div>
   <div class="cont-graph">

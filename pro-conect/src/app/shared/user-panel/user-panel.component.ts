@@ -1,8 +1,9 @@
-import { AlunoResponse } from './../../core/interface/alunoResponse';
-import { Component, OnInit } from '@angular/core';
-import { CardDashboard } from '../../core/interface/cardDashboard';
-import { CardTurma } from '../../core/interface/cardTurma';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AlunoService } from '../../core/service/aluno.service';
+import { AlunoListResponse } from '../../core/types/aluno-list-response.type';
+import { TurmaListResponse } from '../../core/types/turma-list-response.type';
+import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-response.type';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-panel',
@@ -10,12 +11,13 @@ import { AlunoService } from '../../core/service/aluno.service';
   templateUrl: './user-panel.component.html',
   styleUrl: './user-panel.component.scss'
 })
-export class UserPanelComponent implements OnInit {
+export class UserPanelComponent implements OnInit, OnChanges {
 
-  cards!: CardDashboard[];
+  @Input() alunos!: AlunoListResponse;
+  @Input() cards!: CardDashboardListResponse;
   responsiveOptions: any[] | undefined;
-  turmas!: CardTurma[];
-  alunos!: AlunoResponse[];
+  turmas!: TurmaListResponse;
+
   visible: boolean = false;
   presenca: boolean = false;
   alunoSelecionado!: any;
@@ -23,19 +25,13 @@ export class UserPanelComponent implements OnInit {
   constructor(private readonly _alunoService: AlunoService) { }
 
   ngOnInit() {
-    this.obterCardsDashboard();
     this.populandoCarrosel();
     this.populandoTurmas();
-    this.obterAlunos();
   }
 
-  obterCardsDashboard() {
-    this.cards = [
-      { title: 'Total de Alunos', value: '5K', icon: 'pi-graduation-cap' },
-      { title: 'Total de Turmas', value: '20', icon: 'pi-users' },
-      { title: 'Alunos Aprovados', value: '3.5K', icon: 'pi-thumbs-up' },
-      { title: 'Alunos Reprovados', value: '2K', icon: 'pi-thumbs-down' },
-    ];
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['cards'] && changes['cards'].currentValue) {
+    }
   }
 
   populandoCarrosel() {
@@ -87,105 +83,11 @@ export class UserPanelComponent implements OnInit {
           { nome: 'Maria Oliveira' }
         ]
       },
-      {
-        turma: 'Turma C',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma D',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma E',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma E',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma E',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma E',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma E',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma E',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
+
     ];
 
   }
 
-  obterAlunos() {
-    this._alunoService.getAlunos().subscribe((alunoResponse) => {
-      console.log('alunos', alunoResponse);
-      this.alunos = alunoResponse;
-      console.log('alunos', this.alunos);
-    })
-  }
 
   obterAprovadoEReprovado(nota: number) {
     if (nota >= 6) {
