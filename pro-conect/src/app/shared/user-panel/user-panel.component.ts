@@ -114,7 +114,7 @@ export class UserPanelComponent implements OnInit, OnChanges {
   }
 
   showModalProva() {
-    this.visibleModalProva = false;
+    this.visibleModalProva = true;
   }
 }
 
