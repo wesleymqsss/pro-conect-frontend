@@ -33,16 +33,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.formUpdateUser = this._fb.group(
-      {
-        username: [this.newUserLogin.username, Validators.required],
-        password: ['', Validators.required],
-        confirmpassword: ['', Validators.required],
-      },
-      {
-        validators: confirmarSenharIguais('password', 'confirmpassword')
-      }
-    );
+    this.createForm();
 
     this.items = [
       {
@@ -77,11 +68,25 @@ export class HeaderComponent {
       },
     ]
   }
+  createForm() {
+    this.formUpdateUser = this._fb.group(
+      {
+        username: [this.newUserLogin.username, Validators.required,],
+        password: ['', Validators.required],
+        confirmpassword: ['', Validators.required],
+      },
+      {
+        validators: confirmarSenharIguais('password', 'confirmpassword')
+      }
+    );
+
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userLogin'] && changes['userLogin'].currentValue) {
       this.newUserLogin = (changes['userLogin'].currentValue);
-
+      console.log('objeto changes', this.newUserLogin);
+      this.createForm();
     }
   }
 
@@ -90,8 +95,8 @@ export class HeaderComponent {
   }
 
   submitUpdate() {
-    const idUser = this.newUserLogin.id;
-    const role = this.newUserLogin.role;
+    const idUser = this.newUserLogin.user.id;
+    const role = this.newUserLogin.user.role;
 
     if (this.formUpdateUser.invalid) {
       this._snackbarService.showContrast("Favor, verificar se todos os campos estão preenchidos corretamente.");
@@ -105,6 +110,8 @@ export class HeaderComponent {
       password: this.formUpdateUser.get('password')?.value,
       role: role
     }
+    console.log(this.newUserLogin)
+    console.log('sou o objeto dentro do submite', updateUser);
 
     this._loginService.updateUser(idUser, updateUser).subscribe({
       next: (data) => {

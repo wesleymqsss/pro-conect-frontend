@@ -6,11 +6,11 @@
         <ng-template pTemplate="end">
             <div class="info-user">
                 <span>
-                    {{ newUserLogin.role | capitalizeFirst }}
+                    {{ newUserLogin.user.role | capitalizeFirst }}
                 </span>
                 <div class="bar"></div>
                 <span>
-                    {{ newUserLogin.username }}
+                    {{ newUserLogin.user.username }}
                 </span>
             </div>
             <p-button icon="pi pi-user" text size="large" />
@@ -29,7 +29,7 @@
                     <p-inputgroup-addon>
                         <i class="pi pi-user"></i>
                     </p-inputgroup-addon>
-                    <input pInputText formControlName="username" id="username" class="flex-auto" autocomplete="off" />
+                    <input  pInputText formControlName="username" id="username" class="flex-auto" autocomplete="off"/>
                 </p-inputgroup>
             </div>
         </div>

@@ -19,6 +19,7 @@ export class UserPanelComponent implements OnInit, OnChanges {
   turmas!: TurmaListResponse;
 
   visible: boolean = false;
+  visibleModalProva = false;
   presenca: boolean = false;
   alunoSelecionado!: any;
 
@@ -110,6 +111,10 @@ export class UserPanelComponent implements OnInit, OnChanges {
 
   onModalProva() {
     this.visible = true;
+  }
+
+  showModalProva() {
+    this.visibleModalProva = false;
   }
 }
 
