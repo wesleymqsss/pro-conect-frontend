@@ -1,4 +1,4 @@
-<app-header *ngIf="userLogin" [userLogin]="userLogin"></app-header>
+<app-header *ngIf="currentUser" [userLogin]="currentUser"></app-header>
 <main>
   <div class="conteudo">
     <app-user-panel [alunos]="alunos" [cards]="cards"></app-user-panel>
