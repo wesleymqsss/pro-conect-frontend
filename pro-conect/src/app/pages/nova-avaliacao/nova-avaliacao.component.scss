@@ -1,0 +1,29 @@
+.content {
+    width: 96vw;
+    height: 96vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-content {
+    background-color: #FFF;
+    width: 80%;
+    height: 90%;
+    overflow-y: auto;
+
+}
+
+form {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.label-input {
+    font-weight: 600;
+    color: var(--p-violet-800);
+}

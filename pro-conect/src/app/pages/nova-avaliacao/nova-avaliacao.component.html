@@ -1,6 +1,85 @@
 <app-header *ngIf="currentUser" [userLogin]="currentUser"></app-header>
 <main>
-  <div class="conteudo">
-   
+  <div class="content">
+    <div class="form-content">
+      <form>
+        <div class="input-row">
+          <label for="username" class="label-input">Título:</label>
+          <div class="flex items-center gap-4 mb-4 content-input">
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-user"></i>
+              </p-inputgroup-addon>
+              <input pInputText id="username" class="flex-auto" autocomplete="off" />
+            </p-inputgroup>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <label for="username" class="label-input">Matéria:</label>
+          <div class="flex items-center gap-4 mb-4 content-input" style="width: 100%;">
+            <p-select [options]="materias" optionLabel="Selecionar Matéria" placeholder="Select a City"
+              class="w-full md:w-56" />
+          </div>
+        </div>
+        <p class="label-input">Questão 1</p>
+        <div class="questoes">
+
+          <div class="input-row">
+            <label for="texto" class="label-input">Descrição:</label>
+            <div class="flex items-center gap-4 mb-4 content-input">
+              <p-editor [style]="{ height: '15vh',  width: '76vw'}">
+                <ng-template #header>
+                  <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+          </div>
+          <div class="input-row">
+            <label for="texto" class="label-input">Nota:</label>
+            <div class="flex items-center gap-4 mb-4 content-input">
+              <p-inputgroup>
+                <p-inputgroup-addon>
+                  <i class="pi pi-user"></i>
+                </p-inputgroup-addon>
+                <input pInputText id="texto" type="number" class="flex-auto" autocomplete="off" />
+              </p-inputgroup>
+            </div>
+          </div>
+          <div class="respostas">
+            <p class="label-input">Respostas:</p>
+            <div *ngFor="let resposta of respostas; let i = index" class="input-row">
+              <p>{{ resposta.letra }}:</p>
+
+              <label [for]="'editorDescricao' + i" class="label-input">Descrição:</label>
+              <div class="flex items-center gap-4 mb-4 content-input">
+                <p-editor [(ngModel)]="resposta.descricao" [name]="'editor' + i" [ngModelOptions]="{standalone: true}"
+                  [style]="{ height: '15vh',  width: '76vw'}">
+                  <ng-template #header>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Bold"></button>
+                      <button type="button" class="ql-italic" aria-label="Italic"></button>
+                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                  </ng-template>
+                </p-editor>
+              </div>
+
+              <label [for]="'checkboxCorreta' + i" class="label-input">Resposta correta:</label>
+              <div class="flex items-center gap-4 mb-4 content-input">
+                <p>{{ resposta.correta ? 'Sim' : 'Não' }}</p> <p-checkbox [(ngModel)]="resposta.correta"
+                  [name]="'correta' + i" [ngModelOptions]="{standalone: true}" [binary]="true"
+                  [inputId]="'checkboxCorreta' + i">
+                </p-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </main>
