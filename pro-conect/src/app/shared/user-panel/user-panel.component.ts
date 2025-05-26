@@ -17,6 +17,7 @@ export class UserPanelComponent implements OnInit {
   turmas!: CardTurma[];
   alunos!: AlunoResponse[];
   visible: boolean = false;
+  visibleModalProva = false;
   presenca: boolean = false;
   alunoSelecionado!: any;
 
@@ -208,6 +209,10 @@ export class UserPanelComponent implements OnInit {
 
   onModalProva() {
     this.visible = true;
+  }
+
+  showModalProva() {
+    this.visibleModalProva = false;
   }
 }
 
