@@ -110,13 +110,11 @@ export class HeaderComponent {
       next: (data) => {
         this._snackbarService.showSuccess("Usuário atualizado com sucesso!!!");
         this.visibleEditProfile = false;
-        console.log(updateUser)
         this.formUpdateUser.reset();
       }, error: (err) => {
         if (err.status === 200) {
           this._snackbarService.showSuccess("Usuário atualizado com sucesso!!!");
           this.visibleEditProfile = false;
-          console.log(updateUser)
           this.formUpdateUser.reset();
         } else {
           this._snackbarService.showContrast("Error ao salvar alterações.")
