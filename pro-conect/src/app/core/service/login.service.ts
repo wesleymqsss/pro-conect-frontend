@@ -80,6 +80,7 @@ export class LoginService {
     this.isLoggedInSubject.next(false);
     localStorage.removeItem(USER_STORAGE_KEY);
     console.log('Usuário deslogado.');
+    
   }
 
 }
