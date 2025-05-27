@@ -1,12 +1,19 @@
 <div class="cont-pai-panel">
-  <div class="cont-header-panel">
+  <div class="cont-header-panel" *ngIf="isProfessor">
     <app-card-dashboard
-      *ngFor="let cardItem of cards"
+      *ngFor="let cardItem of cardsProf"
       [tipo]="cardItem.tipo"
       [value]="cardItem.value"
     ></app-card-dashboard>
   </div>
-  <div class="cont-graph">
+  <div class="cont-header-panel" *ngIf="!isProfessor">
+    <app-card-dashboard
+      *ngFor="let cardItem of cardsAlun"
+      [tipo]="cardItem.tipo"
+      [value]="cardItem.value"
+    ></app-card-dashboard>
+  </div>
+  <div class="cont-graph" *ngIf="isProfessor">
     <div style="display: flex; align-items: center; gap: 1%">
       <h2 class="titulo">Desempenho por Disciplina</h2>
       <i
@@ -18,59 +25,34 @@
       <app-efficiency-graph></app-efficiency-graph>
     </div>
   </div>
-  <div class="panel-container">
+  <div class="cont-graph" *ngIf="!isProfessor">
     <div style="display: flex; align-items: center; gap: 1%">
-      <h2 class="titulo">Turmas</h2>
+      <h2 class="titulo">Notas por Disciplina</h2>
       <i
-        class="pi pi pi-users"
+        class="pi pi-chart-line"
         style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"
       ></i>
     </div>
-
     <div class="cont-border">
-      <p-carousel
-        [value]="turmas"
-        [numVisible]="4"
-        [numScroll]="1"
-        [circular]="true"
-        [responsiveOptions]="responsiveOptions"
-        [autoplayInterval]="0"
-      >
-        <ng-template pTemplate="item" let-turma>
-          <div class="card-wrapper">
-            <p-card
-              header="{{ turma.turma }}"
-              subheader="{{ turma.semestre }}"
-              class="card-item"
-            >
-              <div class="card-content">
-                <p><strong>Curso:</strong> {{ turma.curso }}</p>
-                <p>
-                  <strong>Horário:</strong> {{ turma.horarioInicio }} -
-                  {{ turma.horarioFim }}
-                </p>
-                <button
-                  pButton
-                  type="button"
-                  icon="pi pi-users"
-                  label="Ver Alunos"
-                  class="botao"
-                  (click)="onModalAlunos()"
-                ></button>
-                <button
-                  pButton
-                  type="button"
-                  icon="pi pi-file-edit"
-                  label="Criar Prova"
-                  class="botao"
-                  (click)="showModalProva()"
-                ></button>
-              </div>
-            </p-card>
-          </div>
-        </ng-template>
-      </p-carousel>
+      <app-note-graph></app-note-graph>
     </div>
+  </div>
+  <div class="panel-container">
+    <app-generic-carousel
+      *ngIf="isProfessor"
+      [title]="'Turmas'"
+      [items]="turmas"
+      [type]="'turma'"
+    >
+    </app-generic-carousel>
+
+    <app-generic-carousel
+      *ngIf="!isProfessor"
+      [title]="'Disciplinas'"
+      [items]="disciplinas"
+      [type]="'disciplina'"
+    >
+    </app-generic-carousel>
 
     <p-dialog
       header="Alunos da Turma"

@@ -1,0 +1,86 @@
+<div style="display: flex; align-items: center; gap: 1%">
+  <h2 class="titulo">{{ title }}</h2>
+  <i
+    [ngClass]="title | cardDashboardIcon"
+    style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"
+  ></i>
+</div>
+
+<div class="cont-border">
+  <p-carousel
+    [value]="items"
+    [numVisible]="4"
+    [numScroll]="1"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="0"
+  >
+    <ng-template pTemplate="item" let-value>
+      <ng-container [ngSwitch]="type">
+        <ng-container *ngSwitchCase="'turma'">
+          <div class="card-wrapper">
+            <p-card
+              header="{{ value.turma }}"
+              subheader="{{ value.semestre }}"
+              class="card-item"
+            >
+              <div class="card-content">
+                <p><strong>Curso:</strong> {{ value.curso }}</p>
+                <p>
+                  <strong>Horário:</strong> {{ value.horarioInicio }} -
+                  {{ value.horarioFim }}
+                </p>
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-users"
+                  label="Ver Alunos"
+                  class="botao"
+                ></button>
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-file-edit"
+                  label="Criar Prova"
+                  class="botao"
+                ></button>
+              </div>
+            </p-card>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'disciplina'">
+          <div class="card-wrapper">
+            <p-card
+              header="{{ value.nomeDisciplina }}"
+              subheader="{{ value.situacao }}"
+              class="card-item"
+            >
+              <div class="card-content">
+                <p><strong>Professor:</strong> {{ value.professor }}</p>
+                <p><strong>Sala:</strong> {{ value.sala }}</p>
+                <p>
+                  <strong>Horários:</strong> {{ value.horarioInicio }} -
+                  {{ value.horarioFim }}
+                </p>
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-users"
+                  label="Visualizar Atividades"
+                  class="botao"
+                ></button>
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-file-edit"
+                  label="Visualizar Provas"
+                  class="botao"
+                ></button>
+              </div>
+            </p-card>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-template>
+  </p-carousel>
+</div>

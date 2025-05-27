@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { CardDashboardComponent } from './card-dashboard/card-dashboard.component';
 import { EfficiencyGraphComponent } from './efficiency-graph/efficiency-graph.component';
+import { GenericCarouselComponent } from './generic-carousel/generic-carousel.component';
+import { NoteGraphComponent } from './note-graph/note-graph.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { EfficiencyGraphComponent } from './efficiency-graph/efficiency-graph.co
     HeaderComponent,
     UserPanelComponent,
     CardDashboardComponent,
-    EfficiencyGraphComponent
+    EfficiencyGraphComponent,
+    GenericCarouselComponent,
+    NoteGraphComponent
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { AlunoListResponse } from '../../core/types/aluno-list-response.type';
 import { TurmaListResponse } from '../../core/types/turma-list-response.type';
 import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-response.type';
 import { Input } from '@angular/core';
+import { DisciplinaListResponse } from '../../core/types/disciplina-list-response.type';
 
 @Component({
   selector: 'app-user-panel',
@@ -14,10 +15,12 @@ import { Input } from '@angular/core';
 export class UserPanelComponent implements OnInit, OnChanges {
 
   @Input() alunos!: AlunoListResponse;
-  @Input() cards!: CardDashboardListResponse;
-  responsiveOptions: any[] | undefined;
-  turmas!: TurmaListResponse;
+  @Input() cardsProf!: CardDashboardListResponse;
+  @Input() cardsAlun!: CardDashboardListResponse;
+  @Input() disciplinas!: DisciplinaListResponse;
+  @Input() isProfessor!: boolean;
 
+  turmas!: TurmaListResponse;
   visible: boolean = false;
   visibleModalProva = false;
   presenca: boolean = false;
@@ -26,7 +29,6 @@ export class UserPanelComponent implements OnInit, OnChanges {
   constructor(private readonly _alunoService: AlunoService) { }
 
   ngOnInit() {
-    this.populandoCarrosel();
     this.populandoTurmas();
   }
 
@@ -35,30 +37,6 @@ export class UserPanelComponent implements OnInit, OnChanges {
     }
   }
 
-  populandoCarrosel() {
-    this.responsiveOptions = [
-      {
-        breakpoint: '1920px',
-        numVisible: 4,
-        numScroll: 1
-      },
-      {
-        breakpoint: '1400px',
-        numVisible: 3,
-        numScroll: 1
-      },
-      {
-        breakpoint: '1024px',
-        numVisible: 2,
-        numScroll: 1
-      },
-      {
-        breakpoint: '768px',
-        numVisible: 1,
-        numScroll: 1
-      }
-    ];
-  }
 
   populandoTurmas() {
     this.turmas = [

@@ -1,6 +1,29 @@
 <app-header *ngIf="userLogin" [userLogin]="userLogin"></app-header>
 <main>
-  <div class="conteudo">
-    <app-user-panel [alunos]="alunos" [cards]="cards"></app-user-panel>
-  </div>
+  <ng-container
+    *ngTemplateOutlet="
+      userLogin.user.role === 'professor' ? perfilProf : perfilAlun
+    "
+  ></ng-container>
 </main>
+
+<ng-template #perfilProf>
+  <div class="conteudo">
+    <app-user-panel
+      [alunos]="alunos"
+      [cardsProf]="cardsProf"
+      [isProfessor]="true"
+    ></app-user-panel>
+  </div>
+</ng-template>
+
+<ng-template #perfilAlun>
+  <div class="conteudo">
+    <app-user-panel
+      [isProfessor]="false"
+      [disciplinas]="disciplinas"
+      [cardsAlun]="cardsAlun"
+    >
+    </app-user-panel>
+  </div>
+</ng-template>

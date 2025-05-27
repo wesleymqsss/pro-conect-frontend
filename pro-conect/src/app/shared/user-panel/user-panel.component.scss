@@ -55,50 +55,20 @@
   color: var(--p-gray-800);
 }
 
-.card-item {
-  width: 32%;
-  height: 100px;
-  margin: 1% auto;
-}
-
 .cont-btn {
   display: flex;
   align-items: center;
   gap: 2%;
 }
-
+.cont-border {
+  border: 1px solid var(--p-violet-800);
+  border-radius: 9px;
+}
 .panel-container {
   width: 95%;
   margin: 1% auto;
   box-sizing: border-box;
   border-radius: 9px;
-}
-
-.cont-border {
-  border: 1px solid var(--p-violet-800);
-  border-radius: 9px;
-}
-
-.titulo {
-  margin-bottom: 1rem;
-  color: var(--p-gray-800);
-}
-
-.card-wrapper {
-  width: 100%;
-  padding: 0.5rem;
-  box-sizing: border-box;
-}
-
-:host ::ng-deep .p-card {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .botao {
