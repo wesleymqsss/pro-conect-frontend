@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FocusTrapModule } from 'primeng/focustrap';
 import { ButtonModule } from 'primeng/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { IconField, IconFieldModule } from 'primeng/iconfield';
@@ -81,7 +82,9 @@ import { DatePickerModule } from 'primeng/datepicker';
     Select,
     ReactiveFormsModule,
     StepperModule,
-    DatePickerModule
+    DatePickerModule,
+    ReactiveFormsModule,
+    AnimateOnScroll
   ],
   exports: [
     FocusTrapModule,
@@ -128,7 +131,9 @@ import { DatePickerModule } from 'primeng/datepicker';
     Select,
     ReactiveFormsModule,
     StepperModule,
-    DatePickerModule
-  ]
+    DatePickerModule,
+    ReactiveFormsModule,
+    AnimateOnScroll
+  ],
 })
 export class MaterialModule { }

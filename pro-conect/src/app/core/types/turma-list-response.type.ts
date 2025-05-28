@@ -1,3 +1,3 @@
-import { CardTurma } from "../interface/cardTurma";
+import { CardTurma } from "../interface/cardTurmaResponse";
 
 export type TurmaListResponse = CardTurma[];
