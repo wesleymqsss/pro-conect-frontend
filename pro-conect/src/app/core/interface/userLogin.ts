@@ -1,9 +1,9 @@
 export interface UserLogin {
-    message: string,
+    message: string;
     user: {
-        id: number,
-        username: string,
-        password: string,
-        role: string
+        id: number;
+        username: string;
+        password: string;
+        role: string;
     }
 }

@@ -31,6 +31,10 @@ import { ChartModule } from 'primeng/chart';
 import { AnimateOnScroll } from 'primeng/animateonscroll';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { EditorModule } from 'primeng/editor';
+import { Select } from 'primeng/select';
+import { StepperModule } from 'primeng/stepper';
+import { DatePickerModule } from 'primeng/datepicker';
 
 @NgModule({
   imports: [
@@ -73,6 +77,12 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    AnimateOnScroll,
+    EditorModule,
+    Select,
+    ReactiveFormsModule,
+    StepperModule,
+    DatePickerModule,
     ReactiveFormsModule,
     AnimateOnScroll
   ],
@@ -116,6 +126,12 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    AnimateOnScroll,
+    EditorModule,
+    Select,
+    ReactiveFormsModule,
+    StepperModule,
+    DatePickerModule,
     ReactiveFormsModule,
     AnimateOnScroll
   ],
