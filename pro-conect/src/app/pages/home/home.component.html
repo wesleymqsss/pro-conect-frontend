@@ -1,8 +1,8 @@
-<app-header *ngIf="userLogin" [userLogin]="userLogin"></app-header>
-<main>
+<app-header *ngIf="currentUser" [userLogin]="currentUser"></app-header>
+<main *ngIf="currentUser">
   <ng-container
     *ngTemplateOutlet="
-      userLogin.user.role === 'professor' ? perfilProf : perfilAlun
+      currentUser.user.role === 'professor' ? perfilProf : perfilAlun
     "
   ></ng-container>
 </main>

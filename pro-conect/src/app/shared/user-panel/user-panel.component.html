@@ -38,7 +38,9 @@
     </div>
   </div>
   <div class="panel-container">
-    <app-generic-carousel (notificarModalAluno)="onModalAlunos()"
+    <app-generic-carousel
+      (notificarModalAluno)="onModalAlunos()"
+      (notificarModalProvas)="showModalProva()"
       *ngIf="isProfessor"
       [title]="'Turmas'"
       [items]="turmas"
@@ -57,12 +59,13 @@
     <p-dialog
       header="Alunos da Turma"
       [(visible)]="visible"
-      [style]="{ width: '70vw', height: '80vh' }"
+      [style]="{ width: '65vw', height: '70vh' }"
       [modal]="true"
       [closable]="true"
     >
       <div class="card">
-        <p-table #tableAlunos
+        <p-table
+          #tableAlunos
           [value]="alunos"
           [paginator]="true"
           [rows]="5"
@@ -75,7 +78,13 @@
                 <p-inputicon>
                   <i class="pi pi-search"></i>
                 </p-inputicon>
-                <input pInputText type="text" [(ngModel)]="filtroGlobal"  (input)="tableAlunos.filterGlobal(filtroGlobal, 'contains')"   placeholder="Pesquisar" />
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="filtroGlobal"
+                  (input)="tableAlunos.filterGlobal(filtroGlobal, 'contains')"
+                  placeholder="Pesquisar"
+                />
               </p-iconfield>
             </div>
           </ng-template>
@@ -100,16 +109,16 @@
           </ng-template>
           <ng-template #body let-aluno>
             <tr>
-              <td>{{ aluno.alunoNome }}</td>
-              <td>{{ aluno.matricula }}</td>
-              <td>{{ aluno.curso }}</td>
-              <td>
+              <td class="style-td">{{ aluno.alunoNome }}</td>
+              <td class="style-td">{{ aluno.matricula }}</td>
+              <td class="style-td">{{ aluno.curso }}</td>
+              <td class="style-td">
                 <p-tag
                   [value]="aluno.mediaFinal"
                   [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
                 ></p-tag>
               </td>
-              <td>
+              <td class="style-td">
                 <p-tag
                   [value]="aluno.mediaFinal"
                   [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
@@ -168,6 +177,51 @@
             </tr>
           </ng-template>
         </p-table>
+      </div>
+    </p-dialog>
+
+    <p-dialog
+      header="Avaliações"
+      [(visible)]="visibleModalProva"
+      [style]="{ width: '55vw', height: '44vh' }"
+      [modal]="true"
+      [closable]="true"
+    >
+      <div class="card">
+        <div class="card-content-prova">
+          <div
+            pAnimateOnScroll
+            enterClass="animate-enter fade-in-10 zoom-in-50 animate-duration-1000"
+            class="flex flex-col card-1 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+            (click)="routerPageCreateProva()"
+          >
+            <div class="header-card">
+              <div class="content-icon">
+                <i class="pi pi-file-plus !text-2xl"></i>
+              </div>
+              <span class="text-2xl font-bold">Criar Avaliação</span>
+            </div>
+            <span class="text-center"
+              >Crie e personalize novas avaliações.</span
+            >
+          </div>
+
+          <div
+            pAnimateOnScroll
+            enterClass="animate-enter fade-in-10 zoom-in-75 animate-duration-1000"
+            class="flex flex-col bg-teal-500 card-2 text-white border-teal-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+          >
+            <div class="header-card">
+              <div class="content-icon">
+                <i class="pi pi-list-check !text-2xl"></i>
+              </div>
+              <span class="text-2xl font-bold">Ver Avaliações</span>
+            </div>
+            <span class="text-center"
+              >Consultar as avaliações do semestre.</span
+            >
+          </div>
+        </div>
       </div>
     </p-dialog>
   </div>

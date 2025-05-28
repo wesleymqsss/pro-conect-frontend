@@ -33,6 +33,7 @@ export class FormLoginComponent {
     setTimeout(() => {
       if (this.accept !== false) {
         this.getUserLogin();
+        this.performLogin();
       } else {
         this._snackbarService.showWarn('Favor, aceitar termos de uso!');
       }
@@ -52,7 +53,24 @@ export class FormLoginComponent {
     })
   }
 
-  redirect(idUser: number) {
+  performLogin() {
+    this._userLoginService.getUserLoginNew(this.name, this.email).subscribe({
+      next: (responseUserLogin) => {
+        console.log(responseUserLogin)
+        if (responseUserLogin && responseUserLogin.user) {
+          this._snackbarService.showSuccess('Login realizado com sucesso!');
+          this.redirect(responseUserLogin.user.id);
+        } else {
+          this._snackbarService.showError('Resposta de login inválida.');
+        }
+      },
+      error: (err) => {
+        this._snackbarService.showError('Usuário ou senha inválidos. Verifique os dados!');
+      }
+    });
+  }
+
+  redirect(idUser: any) {
     this._router.navigate(['/home', idUser]);
   }
 }

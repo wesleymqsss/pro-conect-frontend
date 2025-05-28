@@ -5,6 +5,7 @@ import { TurmaListResponse } from '../../core/types/turma-list-response.type';
 import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-response.type';
 import { Input } from '@angular/core';
 import { DisciplinaListResponse } from '../../core/types/disciplina-list-response.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-panel',
@@ -27,7 +28,10 @@ export class UserPanelComponent implements OnInit, OnChanges {
   alunoSelecionado!: any;
   filtroGlobal!: string;
 
-  constructor(private readonly _alunoService: AlunoService) { }
+  constructor(
+    private readonly _alunoService: AlunoService,
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
     this.populandoTurmas();
@@ -68,6 +72,9 @@ export class UserPanelComponent implements OnInit, OnChanges {
 
   }
 
+  routerPageCreateProva() {
+    this._router.navigate(['/nova-avaliacao']);
+  }
 
   obterAprovadoEReprovado(nota: number) {
     if (nota >= 6) {
@@ -93,7 +100,7 @@ export class UserPanelComponent implements OnInit, OnChanges {
   }
 
   showModalProva() {
-    this.visibleModalProva = false;
+    this.visibleModalProva = true;
   }
 }
 

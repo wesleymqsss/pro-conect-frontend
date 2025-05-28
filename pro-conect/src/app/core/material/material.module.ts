@@ -28,7 +28,7 @@ import { RatingModule } from 'primeng/rating';
 import { ToggleButton } from 'primeng/togglebutton';
 import { AccordionModule } from 'primeng/accordion';
 import { ChartModule } from 'primeng/chart';
-
+import { AnimateOnScroll } from 'primeng/animateonscroll';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
@@ -74,6 +74,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     InputGroupModule,
     InputGroupAddonModule,
     ReactiveFormsModule,
+    AnimateOnScroll
   ],
   exports: [
     FocusTrapModule,
@@ -116,6 +117,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     InputGroupModule,
     InputGroupAddonModule,
     ReactiveFormsModule,
+    AnimateOnScroll
   ],
 })
-export class MaterialModule {}
+export class MaterialModule { }
