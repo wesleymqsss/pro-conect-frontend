@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FocusTrapModule } from 'primeng/focustrap';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
@@ -72,6 +73,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    ReactiveFormsModule,
     AnimateOnScroll
   ],
   exports: [
@@ -114,7 +116,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    ReactiveFormsModule,
     AnimateOnScroll
-  ]
+  ],
 })
 export class MaterialModule { }

@@ -1,58 +1,90 @@
 <div class="cont-pai-panel">
-  <div class="cont-header-panel">
-    <app-card-dashboard *ngFor="let cardItem of cards" [tipo]="cardItem.tipo"
-      [value]="cardItem.value"></app-card-dashboard>
+  <div class="cont-header-panel" *ngIf="isProfessor">
+    <app-card-dashboard
+      *ngFor="let cardItem of cardsProf"
+      [tipo]="cardItem.tipo"
+      [value]="cardItem.value"
+    ></app-card-dashboard>
   </div>
-  <div class="cont-graph">
+  <div class="cont-header-panel" *ngIf="!isProfessor">
+    <app-card-dashboard
+      *ngFor="let cardItem of cardsAlun"
+      [tipo]="cardItem.tipo"
+      [value]="cardItem.value"
+    ></app-card-dashboard>
+  </div>
+  <div class="cont-graph" *ngIf="isProfessor">
     <div style="display: flex; align-items: center; gap: 1%">
       <h2 class="titulo">Desempenho por Disciplina</h2>
-      <i class="pi pi-chart-bar" style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"></i>
+      <i
+        class="pi pi-chart-bar"
+        style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"
+      ></i>
     </div>
     <div class="cont-border">
       <app-efficiency-graph></app-efficiency-graph>
     </div>
   </div>
-  <div class="panel-container">
+  <div class="cont-graph" *ngIf="!isProfessor">
     <div style="display: flex; align-items: center; gap: 1%">
-      <h2 class="titulo">Turmas</h2>
-      <i class="pi pi pi-users" style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"></i>
+      <h2 class="titulo">Notas por Disciplina</h2>
+      <i
+        class="pi pi-chart-line"
+        style="font-size: 2.5rem; color: var(--p-violet-800); margin-top: 5px"
+      ></i>
     </div>
-
     <div class="cont-border">
-      <p-carousel [value]="turmas" [numVisible]="4" [numScroll]="1" [circular]="true"
-        [responsiveOptions]="responsiveOptions" [autoplayInterval]="0">
-        <ng-template pTemplate="item" let-turma>
-          <div class="card-wrapper">
-            <p-card header="{{ turma.turma }}" subheader="{{ turma.semestre }}" class="card-item">
-              <div class="card-content">
-                <p><strong>Curso:</strong> {{ turma.curso }}</p>
-                <p>
-                  <strong>Horário:</strong> {{ turma.horarioInicio }} -
-                  {{ turma.horarioFim }}
-                </p>
-                <button pButton type="button" icon="pi pi-users" label="Ver Alunos" class="botao"
-                  (click)="onModalAlunos()"></button>
-                <button pButton type="button" icon="pi pi-file-edit" label="Criar Prova" class="botao"
-                  (click)="showModalProva()"></button>
-              </div>
-            </p-card>
-          </div>
-        </ng-template>
-      </p-carousel>
+      <app-note-graph></app-note-graph>
     </div>
+  </div>
+  <div class="panel-container">
+    <app-generic-carousel
+      (notificarModalAluno)="onModalAlunos()"
+      (notificarModalProvas)="showModalProva()"
+      *ngIf="isProfessor"
+      [title]="'Turmas'"
+      [items]="turmas"
+      [type]="'turma'"
+    >
+    </app-generic-carousel>
 
-    <p-dialog header="Alunos da Turma" [(visible)]="visible" [style]="{ width: '50vw', height: '76vh' }" [modal]="true"
-      [closable]="true">
+    <app-generic-carousel
+      *ngIf="!isProfessor"
+      [title]="'Disciplinas'"
+      [items]="disciplinas"
+      [type]="'disciplina'"
+    >
+    </app-generic-carousel>
+
+    <p-dialog
+      header="Alunos da Turma"
+      [(visible)]="visible"
+      [style]="{ width: '65vw', height: '70vh' }"
+      [modal]="true"
+      [closable]="true"
+    >
       <div class="card">
-        <p-table #tableAlunos [value]="alunos" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-          [rowsPerPageOptions]="[5, 10, 20]">
+        <p-table
+          #tableAlunos
+          [value]="alunos"
+          [paginator]="true"
+          [rows]="5"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          [rowsPerPageOptions]="[5, 10, 20]"
+        >
           <ng-template #caption>
             <div class="flex">
               <p-iconfield iconPosition="left" class="ml-auto">
                 <p-inputicon>
                   <i class="pi pi-search"></i>
                 </p-inputicon>
-                <input pInputText type="text" placeholder="Pesquisar" />
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="filtroGlobal"
+                  (input)="tableAlunos.filterGlobal(filtroGlobal, 'contains')"
+                  placeholder="Pesquisar"
+                />
               </p-iconfield>
             </div>
           </ng-template>
@@ -77,28 +109,54 @@
           </ng-template>
           <ng-template #body let-aluno>
             <tr>
-              <td>{{ aluno.alunoNome }}</td>
-              <td>{{ aluno.matricula }}</td>
-              <td>{{ aluno.curso }}</td>
-              <td>
-                <p-tag [value]="aluno.mediaFinal" [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"></p-tag>
+              <td class="style-td">{{ aluno.alunoNome }}</td>
+              <td class="style-td">{{ aluno.matricula }}</td>
+              <td class="style-td">{{ aluno.curso }}</td>
+              <td class="style-td">
+                <p-tag
+                  [value]="aluno.mediaFinal"
+                  [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
+                ></p-tag>
               </td>
-              <td>
-                <p-tag [value]="aluno.mediaFinal" [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"></p-tag>
+              <td class="style-td">
+                <p-tag
+                  [value]="aluno.mediaFinal"
+                  [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
+                ></p-tag>
               </td>
               <td>
                 <div class="card flex justify-center">
-                  <p-togglebutton [(ngModel)]="aluno.presenca" onLabel="Presente" offLabel="Ausente"
-                    onIcon="pi pi-thumbs-up" offIcon="pi pi-thumbs-down" onIcon="pi pi-thumbs-up"
-                    offIcon="pi pi-thumbs-down" styleClass="w-36" ariaLabel="Do you confirm" />
+                  <p-togglebutton
+                    [(ngModel)]="aluno.presenca"
+                    onLabel="Presente"
+                    offLabel="Ausente"
+                    onIcon="pi pi-thumbs-up"
+                    offIcon="pi pi-thumbs-down"
+                    onIcon="pi pi-thumbs-up"
+                    offIcon="pi pi-thumbs-down"
+                    styleClass="w-36"
+                    ariaLabel="Do you confirm"
+                  />
                 </div>
               </td>
               <td>
                 <div class="cont-btn">
-                  <button pButton type="button" icon="pi pi pi-save" label="Salvar" severity="secondary"
-                    class="botao"></button>
-                  <button pButton type="button" icon="pi pi-user-minus" label="Faltas" class="botao"
-                    (click)="mostrarFaltas(aluno.alunoId)"></button>
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi pi-save"
+                    label="Salvar"
+                    severity="secondary"
+                    class="botao"
+                  ></button>
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi-user-minus"
+                    label="Faltas"
+                    class="botao"
+                    (click)="mostrarFaltas(aluno.alunoId)"
+                  ></button>
                 </div>
               </td>
             </tr>
@@ -122,33 +180,49 @@
       </div>
     </p-dialog>
 
-    <p-dialog header="Avaliações" [(visible)]="visibleModalProva" [style]="{ width: '55vw', height: '44vh' }"
-      [modal]="true" [closable]="true">
+    <p-dialog
+      header="Avaliações"
+      [(visible)]="visibleModalProva"
+      [style]="{ width: '55vw', height: '44vh' }"
+      [modal]="true"
+      [closable]="true"
+    >
       <div class="card">
-          <div class="card-content-prova">
-            <div pAnimateOnScroll enterClass="animate-enter fade-in-10 zoom-in-50 animate-duration-1000"
-              class="flex flex-col card-1 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4" (click)="routerPageCreateProva()">
-              <div class="header-card">
-                <div class="content-icon">
-                  <i class="pi pi-file-plus !text-2xl"></i>
-                </div>
-                <span class="text-2xl font-bold">Criar Avaliação</span>
+        <div class="card-content-prova">
+          <div
+            pAnimateOnScroll
+            enterClass="animate-enter fade-in-10 zoom-in-50 animate-duration-1000"
+            class="flex flex-col card-1 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+            (click)="routerPageCreateProva()"
+          >
+            <div class="header-card">
+              <div class="content-icon">
+                <i class="pi pi-file-plus !text-2xl"></i>
               </div>
-              <span class="text-center">Crie e personalize novas avaliações.</span>
+              <span class="text-2xl font-bold">Criar Avaliação</span>
             </div>
+            <span class="text-center"
+              >Crie e personalize novas avaliações.</span
+            >
+          </div>
 
-            <div pAnimateOnScroll enterClass="animate-enter fade-in-10 zoom-in-75 animate-duration-1000"
-              class="flex flex-col bg-teal-500 card-2 text-white border-teal-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
-              <div class="header-card">
-                <div class="content-icon">
-                  <i class="pi pi-list-check !text-2xl"></i>
-                </div>
-                <span class="text-2xl font-bold">Ver Avaliações</span>
+          <div
+            pAnimateOnScroll
+            enterClass="animate-enter fade-in-10 zoom-in-75 animate-duration-1000"
+            class="flex flex-col bg-teal-500 card-2 text-white border-teal-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
+          >
+            <div class="header-card">
+              <div class="content-icon">
+                <i class="pi pi-list-check !text-2xl"></i>
               </div>
-              <span class="text-center">Consultar as avaliações do semestre.</span>
+              <span class="text-2xl font-bold">Ver Avaliações</span>
             </div>
+            <span class="text-center"
+              >Consultar as avaliações do semestre.</span
+            >
           </div>
         </div>
+      </div>
     </p-dialog>
   </div>
 </div>
