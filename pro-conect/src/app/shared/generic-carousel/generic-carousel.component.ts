@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-generic-carousel',
@@ -11,6 +11,8 @@ export class GenericCarouselComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() type: 'turma' | 'disciplina' = 'turma';
   @Input() title: string = '';
+  @Output() notificarModalAluno = new EventEmitter<void>();
+
   responsiveOptions: any[] | undefined;
 
   ngOnInit(): void {
@@ -42,4 +44,7 @@ export class GenericCarouselComponent implements OnInit {
     ];
   }
 
+  notificarModal(){
+    this.notificarModalAluno.emit();
+  }
 }

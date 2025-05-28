@@ -25,6 +25,7 @@ export class UserPanelComponent implements OnInit, OnChanges {
   visibleModalProva = false;
   presenca: boolean = false;
   alunoSelecionado!: any;
+  filtroGlobal!: string;
 
   constructor(private readonly _alunoService: AlunoService) { }
 

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FocusTrapModule } from 'primeng/focustrap';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
@@ -69,10 +70,10 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     RatingModule,
     ToggleButton,
     AccordionModule,
-    ChartModule
-    ,
+    ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    ReactiveFormsModule,
   ],
   exports: [
     FocusTrapModule,
@@ -114,6 +115,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

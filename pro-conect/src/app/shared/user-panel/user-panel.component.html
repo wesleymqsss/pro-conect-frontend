@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="panel-container">
-    <app-generic-carousel
+    <app-generic-carousel (notificarModalAluno)="onModalAlunos()"
       *ngIf="isProfessor"
       [title]="'Turmas'"
       [items]="turmas"
@@ -57,13 +57,12 @@
     <p-dialog
       header="Alunos da Turma"
       [(visible)]="visible"
-      [style]="{ width: '50vw', height: '76vh' }"
+      [style]="{ width: '70vw', height: '80vh' }"
       [modal]="true"
       [closable]="true"
     >
       <div class="card">
-        <p-table
-          #tableAlunos
+        <p-table #tableAlunos
           [value]="alunos"
           [paginator]="true"
           [rows]="5"
@@ -76,7 +75,7 @@
                 <p-inputicon>
                   <i class="pi pi-search"></i>
                 </p-inputicon>
-                <input pInputText type="text" placeholder="Pesquisar" />
+                <input pInputText type="text" [(ngModel)]="filtroGlobal"  (input)="tableAlunos.filterGlobal(filtroGlobal, 'contains')"   placeholder="Pesquisar" />
               </p-iconfield>
             </div>
           </ng-template>
