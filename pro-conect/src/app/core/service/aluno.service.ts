@@ -9,11 +9,16 @@ import { AlunoListResponse } from '../types/aluno-list-response.type';
   providedIn: 'root'
 })
 export class AlunoService {
-  private url = `${environment.api_url}/alunos`
+  private url = `${environment.api_url}/Alunos`
 
   constructor(private http: HttpClient) { }
 
   getAlunos(): Observable<AlunoListResponse> {
     return this.http.get<AlunoListResponse>(`${this.url}`);
   }
+
+  getPorTurma(turma: string): Observable<AlunoListResponse> {
+    return this.http.get<AlunoListResponse>(`${this.url}/${turma}`);
+  }
+
 }
