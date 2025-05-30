@@ -97,7 +97,6 @@ export class HomeComponent {
   getDataGraphAlun() {
     this._graphAlunService.getDataGraph().subscribe((dataGraph) => {
       this.dataGraphAlun = dataGraph;
-      console.log("gráfico aluno", this.dataGraphAlun);
 
     });
   }
@@ -117,7 +116,6 @@ export class HomeComponent {
   getCardsDashboardAlun() {
     this._cardDashboardAlunService.getCardsDashboard().subscribe((dataCard) => {
       this.cardsAlun = dataCard;
-      console.log('cards alun', this.cardsAlun);
 
     })
   }
@@ -125,7 +123,6 @@ export class HomeComponent {
   getDiscipline() {
     this._disciplineService.getDiscipline().subscribe((disciplineResponse) => {
       this.disciplinas = disciplineResponse;
-      console.log('disciplinas', this.disciplinas);
 
     });
   }

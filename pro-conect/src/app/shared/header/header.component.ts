@@ -75,7 +75,7 @@ export class HeaderComponent {
     this._loginService.logout();
     this._router.navigate(['']);
   }
-  
+
   createForm() {
     this.formUpdateUser = this._fb.group(
       {
@@ -93,7 +93,6 @@ export class HeaderComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userLogin'] && changes['userLogin'].currentValue) {
       this.newUserLogin = (changes['userLogin'].currentValue);
-      console.log('objeto changes', this.newUserLogin);
       this.createForm();
     }
   }
@@ -118,8 +117,6 @@ export class HeaderComponent {
       password: this.formUpdateUser.get('password')?.value,
       role: role
     }
-    console.log(this.newUserLogin)
-    console.log('sou o objeto dentro do submite', updateUser);
 
     this._loginService.updateUser(idUser, updateUser).subscribe({
       next: (data) => {

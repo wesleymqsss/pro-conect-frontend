@@ -47,13 +47,10 @@ export class UserPanelComponent implements OnInit, OnChanges {
     if (changes['cardsProf'] && changes['cardsProf'].currentValue) {
     }
     if (changes['dataGraphProf'] && changes['dataGraphProf'].currentValue) {
-      console.log('data no panel', this.dataGraphProf);
     }
     if (changes['dataGraphAlun'] && changes['dataGraphAlun'].currentValue) {
-      console.log('data no panel', this.dataGraphAlun);
     }
     if (changes['turmas'] && changes['turmas'].currentValue) {
-      console.log("obj de turmas", this.turmas);
     }
   }
 

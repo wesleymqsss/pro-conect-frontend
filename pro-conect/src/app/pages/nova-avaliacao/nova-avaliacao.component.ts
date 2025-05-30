@@ -20,7 +20,6 @@ export class NovaAvaliacaoComponent {
   ngOnInit(): void {
     this.userSubscription = this._loginService.currentUser$.subscribe(user => {
       this.currentUser = user;
-      console.log( 'sou o usuario logado na avaliacao', this.currentUser)
     });
 
     this.loginStatusSubscription = this._loginService.isLoggedIn$.subscribe(status => {
