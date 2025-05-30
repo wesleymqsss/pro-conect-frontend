@@ -9,7 +9,7 @@ import { CardDashboardListResponse } from '../types/card-dashboard-list-response
 @Injectable({
   providedIn: 'root'
 })
-export class CardDashboardService {
+export class CardDashboardProfService {
   private url = `${environment.api_url}/dashboard/cards`
 
   constructor(private http: HttpClient) { }
