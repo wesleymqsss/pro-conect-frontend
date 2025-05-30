@@ -13,6 +13,7 @@ import { Noir } from '../styles';
 import { provideHttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { NovaAvaliacaoModule } from './pages/nova-avaliacao/nova-avaliacao.module';
+import { VisualizarAvaliacoesModule } from './pages/visualizar-avaliacoes/visualizar-avaliacoes.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,8 @@ import { NovaAvaliacaoModule } from './pages/nova-avaliacao/nova-avaliacao.modul
     ToastModule,
     ButtonModule,
     LoginModule,
-    NovaAvaliacaoModule
-
+    NovaAvaliacaoModule,
+    VisualizarAvaliacoesModule
   ],
   exports: [
     BrowserModule
