@@ -104,7 +104,7 @@ export class VisualizarAvaliacoesComponent {
         this._avaliacaoService.deleteAvaliacao(idMateria).subscribe({
           next: () => {
             this._snackbarService.showSuccess('Avaliação excluida com sucesso!!!');
-
+            this.getAvaliacaoProfessor();
           }
         });
       }
