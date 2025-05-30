@@ -71,6 +71,7 @@
           [rows]="5"
           [tableStyle]="{ 'min-width': '35rem' }"
           [rowsPerPageOptions]="[5, 10, 20]"
+          [globalFilterFields]="['nome', 'matricula', 'curso', 'mediaFinal']"
         >
           <ng-template #caption>
             <div class="flex">
