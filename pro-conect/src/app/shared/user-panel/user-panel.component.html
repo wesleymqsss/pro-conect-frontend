@@ -22,7 +22,7 @@
       ></i>
     </div>
     <div class="cont-border">
-      <app-efficiency-graph></app-efficiency-graph>
+      <app-efficiency-graph [dataGraph]="dataGraphProf"> </app-efficiency-graph>
     </div>
   </div>
   <div class="cont-graph" *ngIf="!isProfessor">
@@ -34,12 +34,12 @@
       ></i>
     </div>
     <div class="cont-border">
-      <app-note-graph></app-note-graph>
+      <app-note-graph [dataGraph]="dataGraphAlun"> </app-note-graph>
     </div>
   </div>
   <div class="panel-container">
     <app-generic-carousel
-      (notificarModalAluno)="onModalAlunos()"
+      (notificarModalAluno)="onModalAlunos($event)"
       (notificarModalProvas)="showModalProva()"
       *ngIf="isProfessor"
       [title]="'Turmas'"
@@ -59,7 +59,7 @@
     <p-dialog
       header="Alunos da Turma"
       [(visible)]="visible"
-      [style]="{ width: '65vw', height: '70vh' }"
+      [style]="{ width: '65vw', height: '60vh' }"
       [modal]="true"
       [closable]="true"
     >
@@ -69,7 +69,7 @@
           [value]="alunos"
           [paginator]="true"
           [rows]="5"
-          [tableStyle]="{ 'min-width': '50rem' }"
+          [tableStyle]="{ 'min-width': '35rem' }"
           [rowsPerPageOptions]="[5, 10, 20]"
         >
           <ng-template #caption>
@@ -90,8 +90,8 @@
           </ng-template>
           <ng-template #header>
             <tr style="width: 100%">
-              <th pSortableColumn="alunoNome" class="col-table">
-                Name <p-sortIcon field="alunoNome" />
+              <th pSortableColumn="nome" class="col-table">
+                Name <p-sortIcon field="nome" />
               </th>
               <th pSortableColumn="matricula" class="col-table">
                 Matricula <p-sortIcon field="matricula" />
@@ -102,14 +102,11 @@
               <th pSortableColumn="mediaFinal" class="col-table">
                 Nota <p-sortIcon field="mediaFinal" />
               </th>
-              <th class="col-table">Status</th>
-              <th class="col-table">Frequência</th>
-              <th class="col-table">Ações</th>
             </tr>
           </ng-template>
           <ng-template #body let-aluno>
             <tr>
-              <td class="style-td">{{ aluno.alunoNome }}</td>
+              <td class="style-td">{{ aluno.nome }}</td>
               <td class="style-td">{{ aluno.matricula }}</td>
               <td class="style-td">{{ aluno.curso }}</td>
               <td class="style-td">
@@ -118,13 +115,7 @@
                   [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
                 ></p-tag>
               </td>
-              <td class="style-td">
-                <p-tag
-                  [value]="aluno.mediaFinal"
-                  [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
-                ></p-tag>
-              </td>
-              <td>
+              <!-- <td class="style-td">
                 <div class="card flex justify-center">
                   <p-togglebutton
                     [(ngModel)]="aluno.presenca"
@@ -138,42 +129,7 @@
                     ariaLabel="Do you confirm"
                   />
                 </div>
-              </td>
-              <td>
-                <div class="cont-btn">
-                  <button
-                    pButton
-                    type="button"
-                    icon="pi pi pi-save"
-                    label="Salvar"
-                    severity="secondary"
-                    class="botao"
-                  ></button>
-                  <button
-                    pButton
-                    type="button"
-                    icon="pi pi-user-minus"
-                    label="Faltas"
-                    class="botao"
-                    (click)="mostrarFaltas(aluno.alunoId)"
-                  ></button>
-                </div>
-              </td>
-            </tr>
-            <tr *ngIf="alunoSelecionado === aluno.alunoId">
-              <td colspan="7">
-                <p-accordion>
-                  <p-accordionTab header="Histórico de Faltas">
-                    <!-- conteúdo dinâmico aqui -->
-                    <ul>
-                      <li *ngFor="let aluno of alunos">
-                        {{ aluno.curso }} -
-                        {{ aluno.presenca }}
-                      </li>
-                    </ul>
-                  </p-accordionTab>
-                </p-accordion>
-              </td>
+              </td> -->
             </tr>
           </ng-template>
         </p-table>

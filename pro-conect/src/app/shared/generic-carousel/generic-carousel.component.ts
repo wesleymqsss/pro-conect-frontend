@@ -11,7 +11,7 @@ export class GenericCarouselComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() type: 'turma' | 'disciplina' = 'turma';
   @Input() title: string = '';
-  @Output() notificarModalAluno = new EventEmitter<void>();
+  @Output() notificarModalAluno = new EventEmitter<string>();
   @Output() notificarModalProvas = new EventEmitter<void>();
 
   responsiveOptions: any[] | undefined;
@@ -45,8 +45,10 @@ export class GenericCarouselComponent implements OnInit {
     ];
   }
 
-  notificarModalAlunos() {
-    this.notificarModalAluno.emit();
+  notificarModalAlunos(turma: string) {
+    const texto = turma;
+    const nomeDaTurma = texto.substring(6).toLowerCase();
+    this.notificarModalAluno.emit(nomeDaTurma);
   }
 
   notificarModalProva() {

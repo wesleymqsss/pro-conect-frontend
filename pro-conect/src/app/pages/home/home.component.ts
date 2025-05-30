@@ -4,10 +4,18 @@ import { LoginService } from '../../core/service/login.service';
 import { UserLogin } from '../../core/interface/userLogin';
 import { AlunoService } from '../../core/service/aluno.service';
 import { AlunoListResponse } from '../../core/types/aluno-list-response.type';
-import { CardDashboardService } from '../../core/service/card-dashboard.service';
+import { CardDashboardProfService } from '../../core/service/card-dashboard-prof.service';
 import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-response.type';
 import { DisciplinaListResponse } from '../../core/types/disciplina-list-response.type';
 import { Subscription } from 'rxjs';
+import { GraphProfService } from '../../core/service/graph-prof.service';
+import { DadosGraphProfListResponse } from '../../core/types/dados-graph-prof-list.type';
+import { TurmaService } from '../../core/service/turma.service';
+import { TurmaListResponse } from '../../core/types/turma-list-response.type';
+import { DisciplineService } from '../../core/service/discipline.service';
+import { DadosGraphNoteListResponse } from '../../core/types/dados-graph-note-list-response.type';
+import { GraphNoteService } from '../../core/service/graph-note.service';
+import { CardDashboardAlunService } from '../../core/service/card-dashboard-alun.service';
 
 @Component({
   selector: 'app-home',
@@ -16,32 +24,43 @@ import { Subscription } from 'rxjs';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  private userSubscription!: Subscription;
+  private loginStatusSubscription!: Subscription;
+
   userId!: string;
   userLogin!: UserLogin;
   alunos!: AlunoListResponse;
   cardsProf!: CardDashboardListResponse;
   cardsAlun!: CardDashboardListResponse;
   disciplinas!: DisciplinaListResponse;
+  turmas!: TurmaListResponse;
+  dataGraphProf!: DadosGraphProfListResponse;
+  dataGraphAlun!: DadosGraphNoteListResponse;
   isProfessor!: boolean;
   currentUser: UserLogin | null = null;
   isLoggedIn: boolean = false;
-  private userSubscription!: Subscription;
-  private loginStatusSubscription!: Subscription;
+
 
   constructor(
     private readonly _route: ActivatedRoute,
     private readonly _loginService: LoginService,
     private readonly _alunoService: AlunoService,
-    private readonly _cardDashboardService: CardDashboardService
+    private readonly _cardDashboardService: CardDashboardProfService,
+    private readonly _cardDashboardAlunService: CardDashboardAlunService,
+    private readonly _graphProfService: GraphProfService,
+    private readonly _graphAlunService: GraphNoteService,
+    private readonly _turmaService: TurmaService,
+    private readonly _disciplineService: DisciplineService
   ) { }
 
   ngOnInit() {
-    this.getStudents();
+    this.getTarefas();
     this.getCardsDashboardProf();
     this.getCardsDashboardAlun();
+    this.getDataGraphProf();
+    this.getDataGraphAlun();
     this.getDiscipline();
     this.getUser()
-
   }
 
   ngOnDestroy(): void {
@@ -63,9 +82,28 @@ export class HomeComponent {
     });
   }
 
-  getStudents() {
-    this._alunoService.getAlunos().subscribe((alunoResponse) => {
+  getStudentsByClass(turma: string) {
+    this._alunoService.getPorTurma(turma).subscribe((alunoResponse) => {
       this.alunos = alunoResponse;
+    })
+  }
+
+  getDataGraphProf() {
+    this._graphProfService.getDataGraph().subscribe((dataGraph) => {
+      this.dataGraphProf = dataGraph;
+    })
+  }
+
+  getDataGraphAlun() {
+    this._graphAlunService.getDataGraph().subscribe((dataGraph) => {
+      this.dataGraphAlun = dataGraph;
+
+    });
+  }
+
+  getTarefas() {
+    this._turmaService.getTurmas().subscribe((tarefaResponse) => {
+      this.turmas = tarefaResponse;
     })
   }
 
@@ -76,61 +114,16 @@ export class HomeComponent {
   }
 
   getCardsDashboardAlun() {
-    this.cardsAlun = [
-      {
-        tipo: 'Total de Tarefas',
-        value: 10
-      },
-      {
-        tipo: 'Tarefas Realizadas',
-        value: 8
-      },
-      {
-        tipo: 'Provas Realizadas',
-        value: 2
-      },
-      {
-        tipo: 'Provas Pendentes',
-        value: 2
-      },
-    ]
+    this._cardDashboardAlunService.getCardsDashboard().subscribe((dataCard) => {
+      this.cardsAlun = dataCard;
+
+    })
   }
 
   getDiscipline() {
-    this.disciplinas = [
-      {
-        nomeDisciplina: 'Banco de Dados',
-        professor: 'João Pimentel',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        sala: 'LAB 104',
-        situacao: 'Cursando'
-      },
-      {
-        nomeDisciplina: 'Programação WEB',
-        professor: 'João Evangelista',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        sala: 'LAB 109',
-        situacao: 'Cursando'
-      },
-      {
-        nomeDisciplina: 'Programação Mobile',
-        professor: 'João Pimentel',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        sala: 'LAB 106',
-        situacao: 'Cursando'
-      },
-      {
-        nomeDisciplina: 'Programação Orientada a Objetos',
-        professor: 'João Evagelista',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        sala: 'LAB 201',
-        situacao: 'Concluída'
-      },
+    this._disciplineService.getDiscipline().subscribe((disciplineResponse) => {
+      this.disciplinas = disciplineResponse;
 
-    ]
+    });
   }
 }

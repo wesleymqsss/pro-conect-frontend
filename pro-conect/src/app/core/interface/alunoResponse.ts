@@ -1,9 +1,7 @@
 export interface AlunoResponse {
-  alunoId: number,
-  materia: string,
-  alunoNome: string,
-  matricula: string,
-  curso: string,
-  mediaFinal: number;
-  presenca: boolean
+  id: number;
+  nome: string;
+  matricula: string;
+  curso: string;
+  turma: string;
 }

@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, effect, inject, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject, Input, OnChanges, PLATFORM_ID, SimpleChanges } from '@angular/core';
+import { DadosGraphProfListResponse } from '../../core/types/dados-graph-prof-list.type';
 
 
 @Component({
@@ -8,28 +9,39 @@ import { ChangeDetectorRef, Component, effect, inject, PLATFORM_ID } from '@angu
   templateUrl: './efficiency-graph.component.html',
   styleUrl: './efficiency-graph.component.scss'
 })
-export class EfficiencyGraphComponent {
-  data: any;
+export class EfficiencyGraphComponent implements OnChanges {
+
+
+  @Input() dataGraph!: DadosGraphProfListResponse;
 
   options: any;
+
+  data: any;
 
   platformId = inject(PLATFORM_ID);
 
   constructor(private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
-    this.initChart();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataGraph'] && changes['dataGraph'].currentValue) {
+      this.initChart(this.dataGraph);
+    }
   }
 
-  initChart() {
+  initChart(response: DadosGraphProfListResponse) {
     if (isPlatformBrowser(this.platformId)) {
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--p-text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
       const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
 
+      const labels = response.map(item => item.disciplina);
+      const aprovadosData = response.map(item => item.aprovados);
+      const reprovadosData = response.map(item => item.reprovados);
+      const recuperacaoData = response.map(item => item.recuperacao);
+
       this.data = {
-        labels: ['Banco de Dados', 'Engenharia de Software', 'Estrutura de Dados', 'Lógica Computacional', 'Gestão de Projetos', 'Linguagem Técnica Programação Web', 'Linguagem de Programação Mobile'],
+        labels: labels,
         datasets: [
           {
             type: 'line',
@@ -38,13 +50,13 @@ export class EfficiencyGraphComponent {
             borderWidth: 2,
             fill: false,
             tension: 0.4,
-            data: [50, 25, 12, 48, 56, 76, 42]
+            data: recuperacaoData
           },
           {
             type: 'bar',
             label: 'Aprovados',
             backgroundColor: documentStyle.getPropertyValue('--p-blue-800'),
-            data: [21, 84, 24, 75, 37, 65, 34],
+            data: aprovadosData,
             borderColor: 'white',
             borderWidth: 2
           },
@@ -52,7 +64,7 @@ export class EfficiencyGraphComponent {
             type: 'bar',
             label: 'Reprovados',
             backgroundColor: documentStyle.getPropertyValue('--p-violet-600'),
-            data: [41, 52, 24, 74, 23, 21, 32]
+            data: reprovadosData
           }
         ]
       };

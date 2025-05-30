@@ -79,8 +79,7 @@ export class LoginService {
     this.currentUserSubject.next(null);
     this.isLoggedInSubject.next(false);
     localStorage.removeItem(USER_STORAGE_KEY);
-    console.log('Usuário deslogado.');
-    
+
   }
 
 }

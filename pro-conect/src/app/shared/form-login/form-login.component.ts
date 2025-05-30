@@ -56,7 +56,6 @@ export class FormLoginComponent {
   performLogin() {
     this._userLoginService.getUserLoginNew(this.name, this.email).subscribe({
       next: (responseUserLogin) => {
-        console.log(responseUserLogin)
         if (responseUserLogin && responseUserLogin.user) {
           this._snackbarService.showSuccess('Login realizado com sucesso!');
           this.redirect(responseUserLogin.user.id);

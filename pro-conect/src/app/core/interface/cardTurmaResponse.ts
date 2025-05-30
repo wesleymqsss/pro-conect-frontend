@@ -1,10 +1,10 @@
 export interface CardTurma {
-  turma: string;
+  id: number;
+  nome: string;
   curso: string;
   semestre: string;
   horarioInicio: string;
   horarioFim: string;
-  alunos: Alunos[];
 }
 
 interface Alunos {
