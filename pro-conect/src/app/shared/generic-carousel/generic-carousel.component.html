@@ -20,7 +20,7 @@
         <ng-container *ngSwitchCase="'turma'">
           <div class="card-wrapper">
             <p-card
-              header="{{ value.turma }}"
+              header="{{ value.nome }}"
               subheader="{{ value.semestre }}"
               class="card-item"
             >
@@ -36,7 +36,7 @@
                   icon="pi pi-users"
                   label="Ver Alunos"
                   class="botao"
-                  (click)="notificarModalAlunos()"
+                  (click)="notificarModalAlunos(value.nome)"
                 ></button>
                 <button
                   pButton
