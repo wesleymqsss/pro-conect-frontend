@@ -33,7 +33,6 @@ export class NovaAvaliacaoComponent {
   ngOnInit(): void {
     this.getUserLogin();
     this.createProvaForm();
-
   }
 
   ngOnDestroy(): void {
