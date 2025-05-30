@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AlunoService } from '../../core/service/aluno.service';
 import { AlunoListResponse } from '../../core/types/aluno-list-response.type';
 import { TurmaListResponse } from '../../core/types/turma-list-response.type';
@@ -6,6 +6,8 @@ import { CardDashboardListResponse } from '../../core/types/card-dashboard-list-
 import { Input } from '@angular/core';
 import { DisciplinaListResponse } from '../../core/types/disciplina-list-response.type';
 import { Router } from '@angular/router';
+import { DadosGraphProfListResponse } from '../../core/types/dados-graph-prof-list.type';
+import { DadosGraphNoteListResponse } from '../../core/types/dados-graph-note-list-response.type';
 
 @Component({
   selector: 'app-user-panel',
@@ -19,9 +21,13 @@ export class UserPanelComponent implements OnInit, OnChanges {
   @Input() cardsProf!: CardDashboardListResponse;
   @Input() cardsAlun!: CardDashboardListResponse;
   @Input() disciplinas!: DisciplinaListResponse;
+  @Input() turmas!: TurmaListResponse;
+  @Input() dataGraphProf!: DadosGraphProfListResponse;
+  @Input() dataGraphAlun!: DadosGraphNoteListResponse;
   @Input() isProfessor!: boolean;
 
-  turmas!: TurmaListResponse;
+  @Output() nomeDaTurmaEmit = new EventEmitter<string>();
+
   visible: boolean = false;
   visibleModalProva = false;
   presenca: boolean = false;
@@ -34,42 +40,21 @@ export class UserPanelComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.populandoTurmas();
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['cards'] && changes['cards'].currentValue) {
+    if (changes['cardsProf'] && changes['cardsProf'].currentValue) {
     }
-  }
-
-
-  populandoTurmas() {
-    this.turmas = [
-      {
-        turma: 'Turma A',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-      {
-        turma: 'Turma B',
-        curso: 'ADS',
-        semestre: '4 Semestre',
-        horarioInicio: '09h00 AM',
-        horarioFim: '12h00 AM',
-        alunos: [
-          { nome: 'João Silva' },
-          { nome: 'Maria Oliveira' }
-        ]
-      },
-
-    ];
-
+    if (changes['dataGraphProf'] && changes['dataGraphProf'].currentValue) {
+      console.log('data no panel', this.dataGraphProf);
+    }
+    if (changes['dataGraphAlun'] && changes['dataGraphAlun'].currentValue) {
+      console.log('data no panel', this.dataGraphAlun);
+    }
+    if (changes['turmas'] && changes['turmas'].currentValue) {
+      console.log("obj de turmas", this.turmas);
+    }
   }
 
   routerPageCreateProva() {
@@ -91,7 +76,8 @@ export class UserPanelComponent implements OnInit, OnChanges {
     }
   }
 
-  onModalAlunos() {
+  onModalAlunos(turma: string) {
+    this.nomeDaTurmaEmit.emit(turma);
     this.visible = true;
   }
 
