@@ -13,6 +13,9 @@
       [alunos]="alunos"
       [cardsProf]="cardsProf"
       [isProfessor]="true"
+      [dataGraphProf]="dataGraphProf"
+      [turmas]="turmas"
+      (nomeDaTurmaEmit)="getStudentsByClass($event)"
     ></app-user-panel>
   </div>
 </ng-template>
@@ -23,6 +26,7 @@
       [isProfessor]="false"
       [disciplinas]="disciplinas"
       [cardsAlun]="cardsAlun"
+      [dataGraphAlun]="dataGraphAlun"
     >
     </app-user-panel>
   </div>
