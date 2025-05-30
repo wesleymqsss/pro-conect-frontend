@@ -176,7 +176,7 @@ import { DividerModule } from 'primeng/divider';
     Tag,
     RadioButton,
     Rating,
-    InputNumber,
+    InputNumber,  
     DividerModule
 
   ],
