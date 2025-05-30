@@ -12,6 +12,7 @@ export interface IQuestao{
 }
 
 export interface IProvaP{
+    id?: number;
     descricao: string;
     dataProva: string;
     materiaId:number;

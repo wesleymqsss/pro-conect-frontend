@@ -15,3 +15,64 @@
 .buttons-table{
     gap: 5px;
 }
+
+
+.label-input {
+    padding-top: 3%;
+    font-weight: 600;
+    color: var(--p-violet-800);
+}
+
+.content-questao {
+    margin-bottom: 1%;
+}
+
+.button-remove-opcao {
+    width: 100%;
+    padding: 1%;
+    padding-left: 0;
+}
+
+.buttons-add-opcao-remove-questao {
+    width: 46%;
+    padding: 1%;
+    padding-left: 0;
+    padding-top: 0;
+    display: flex;
+    gap: 17px;
+}
+
+.data-prova {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        padding-top: 0;
+    }
+
+}
+
+.form-check {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    label{
+        padding-top: 0;
+    }
+}
+
+.questoes{
+   gap: 3px;
+   
+}
+
+.form{
+    padding: 5%;
+    padding-top: 0;
+}
+
+.button-opcao{
+padding-bottom: 1%;
+}
