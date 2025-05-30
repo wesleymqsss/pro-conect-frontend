@@ -1,31 +1,21 @@
 .content {
-    width: 96vw;
-    height: 96vh;
+    width: 99vw;
+    height: 99vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.form-content {
-    background-color: #FFF;
+.card{
     width: 80%;
-    height: 90%;
-    overflow-y: auto;
-    display: flex;
-    justify-content: center;
-    border-radius: 8px;
+    height: 50%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    min-width: 80%;
-    min-height: 500px;
-    max-width: 100%;
-    max-height: 80%;
+.buttons-table{
+    gap: 5px;
 }
+
 
 .label-input {
     padding-top: 3%;
@@ -71,4 +61,18 @@ form {
     label{
         padding-top: 0;
     }
+}
+
+.questoes{
+   gap: 3px;
+   
+}
+
+.form{
+    padding: 5%;
+    padding-top: 0;
+}
+
+.button-opcao{
+padding-bottom: 1%;
 }

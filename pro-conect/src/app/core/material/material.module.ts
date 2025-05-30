@@ -31,6 +31,22 @@ import { ChartModule } from 'primeng/chart';
 import { AnimateOnScroll } from 'primeng/animateonscroll';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { EditorModule } from 'primeng/editor';
+import { Select } from 'primeng/select';
+import { StepperModule } from 'primeng/stepper';
+import { DatePickerModule } from 'primeng/datepicker';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { TextareaModule } from 'primeng/textarea';
+import { CommonModule } from '@angular/common';
+import { FileUpload } from 'primeng/fileupload';
+import { SelectModule } from 'primeng/select';
+import { Tag } from 'primeng/tag';
+import { RadioButton } from 'primeng/radiobutton';
+import { Rating } from 'primeng/rating';
+import { InputNumber } from 'primeng/inputnumber';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   imports: [
@@ -73,8 +89,27 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    AnimateOnScroll,
+    EditorModule,
+    Select,
     ReactiveFormsModule,
-    AnimateOnScroll
+    StepperModule,
+    DatePickerModule,
+    ReactiveFormsModule,
+    AnimateOnScroll,
+    ToolbarModule,
+    ToastModule,
+    ConfirmDialog,
+    TextareaModule,
+    CommonModule,
+    FileUpload,
+    SelectModule,
+    Tag,
+    RadioButton,
+    Rating,
+    InputNumber,
+    DividerModule
+
   ],
   exports: [
     FocusTrapModule,
@@ -116,8 +151,34 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
     ChartModule,
     InputGroupModule,
     InputGroupAddonModule,
+    AnimateOnScroll,
+    EditorModule,
+    Select,
     ReactiveFormsModule,
-    AnimateOnScroll
+    StepperModule,
+    DatePickerModule,
+    ReactiveFormsModule,
+    AnimateOnScroll,
+    EditorModule,
+    Select,
+    ReactiveFormsModule,
+    StepperModule,
+    DatePickerModule,
+    ReactiveFormsModule,
+    AnimateOnScroll,
+    ToolbarModule,
+    ToastModule,
+    ConfirmDialog,
+    TextareaModule,
+    CommonModule,
+    FileUpload,
+    SelectModule,
+    Tag,
+    RadioButton,
+    Rating,
+    InputNumber,  
+    DividerModule
+
   ],
 })
 export class MaterialModule { }

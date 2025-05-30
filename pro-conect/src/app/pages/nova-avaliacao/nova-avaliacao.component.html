@@ -1,6 +1,393 @@
 <app-header *ngIf="currentUser" [userLogin]="currentUser"></app-header>
 <main>
-  <div class="conteudo">
-   
+  <div class="content">
+    <div class="form-content">
+      <p-stepper [value]="1" class="basis-[50rem]">
+        <p-step-list>
+          <p-step [value]="1">Dados da Prova</p-step>
+          <p-step [value]="2">Adicionar Questões</p-step>
+          <p-step [value]="3">Revisão e Envio</p-step>
+        </p-step-list>
+
+        <p-step-panels>
+          <p-step-panel [value]="1">
+            <ng-template #content let-activateCallback="activateCallback">
+              <form [formGroup]="provaForm">
+                <div class="flex flex-col h-full">
+                  <div class="flex-auto">
+                    <div class="form-group">
+                      <label class="label-input " for="descricao">Descrição da Prova:</label>
+                      <p-inputgroup>
+                        <p-inputgroup-addon>
+                          <i class="pi pi-user"></i>
+                        </p-inputgroup-addon>
+                        <input pInputText id="descricao" class="form-control" [class.is-invalid]="
+                      provaForm.get('descricao')?.invalid &&
+                      provaForm.get('descricao')?.touched
+                    " formControlName="descricao" placeholder="Descrição é obrigatória" />
+                      </p-inputgroup>
+
+                      <div *ngIf="
+                      provaForm.get('descricao')?.invalid &&
+                      provaForm.get('descricao')?.touched
+                    " class="invalid-feedback">
+                        Descrição é obrigatória.
+                      </div>
+                    </div>
+
+                    <div class="form-group data-prova">
+                      <label class="label-input " for="dataProva">Data da Prova:</label>
+                      <p-datepicker placeholder="Data da prova" id="dataProva" formControlName="dataProva"
+                        [iconDisplay]="'input'" [showIcon]="true" inputId="dataProva" [class.is-invalid]="
+                      provaForm.get('dataProva')?.invalid &&
+                      provaForm.get('dataProva')?.touched
+                    " />
+
+                      <div *ngIf="
+                      provaForm.get('dataProva')?.invalid &&
+                      provaForm.get('dataProva')?.touched
+                    " class="invalid-feedback">
+                        Data da prova é obrigatória.
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="label-input " for="materiaId" class="label-input">ID da Matéria:</label>
+
+                      <p-inputgroup>
+                        <p-inputgroup-addon>
+                          <i class="pi pi-user"></i>
+                        </p-inputgroup-addon>
+                        <input type="number" id="materiaId" formControlName="materiaId" class="form-control"
+                          [class.is-invalid]="
+                      provaForm.get('materiaId')?.invalid &&
+                      provaForm.get('materiaId')?.touched
+                    " />
+                      </p-inputgroup>
+
+                      <div *ngIf="
+                      provaForm.get('materiaId')?.invalid &&
+                      provaForm.get('materiaId')?.touched
+                    " class="invalid-feedback">
+                        ID da Matéria é obrigatório.
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="label-input " for="professorId">ID do Professor:</label>
+                      <p-inputgroup>
+                        <p-inputgroup-addon>
+                          <i class="pi pi-user"></i>
+                        </p-inputgroup-addon>
+                        <input type="number" id="professorId" formControlName="professorId" class="form-control"
+                          [class.is-invalid]="
+                      provaForm.get('professorId')?.invalid &&
+                        provaForm.get('professorId')?.touched
+                      " />
+                      </p-inputgroup>
+
+                      <div *ngIf="
+                        provaForm.get('professorId')?.invalid &&
+                        provaForm.get('professorId')?.touched
+                      " class="invalid-feedback">
+                        ID do Professor é obrigatório.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex pt-6 justify-end">
+                    <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right"
+                      (onClick)="activateCallback(2)" />
+                  </div>
+                </div>
+              </form>
+            </ng-template>
+          </p-step-panel>
+
+          <p-step-panel [value]="2">
+            <ng-template #content let-activateCallback="activateCallback">
+              <form [formGroup]="provaForm">
+                <div class="flex flex-col h-full">
+                  <div class="flex-auto">
+                    <hr />
+                    <h3>Questões</h3>
+
+                    <div formArrayName="questoes">
+                      <div *ngFor="let questaoControl of questoes.controls; let i = index" [formGroupName]="i"
+                        class="card mb-3 p-3">
+                        <h4>Questão #{{ i + 1 }}</h4>
+                        <div class="form-group">
+                          <label class="label-input ">Texto da Questão:</label>
+                          <p-inputgroup>
+                            <p-inputgroup-addon>
+                              <i class="pi pi-user"></i>
+                            </p-inputgroup-addon>
+                            <input formControlName="texto" pInputText id="texto" class="form-control"
+                              [class.is-invalid]="
+                      provaForm.get('texto')?.invalid &&
+                      provaForm.get('texto')?.touched
+                    " placeholder="Texto é obrigatório" />
+                          </p-inputgroup>
+
+                          <div *ngIf="
+                          questaoControl.get('texto')?.invalid &&
+                          questaoControl.get('texto')?.touched
+                        " class="invalid-feedback">
+                            Texto da questão é obrigatório.
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="label-input ">Valor da Questão:</label>
+
+                          <p-inputgroup>
+                            <p-inputgroup-addon>
+                              <i class="pi pi-user"></i>
+                            </p-inputgroup-addon>
+                            <input type="number" id="valor" formControlName="valor" class="form-control"
+                              [class.is-invalid]="
+                     provaForm.get('valor')?.invalid &&
+                      provaForm.get('valor')?.touched
+                    " />
+                          </p-inputgroup>
+
+                          <div *ngIf="
+                          questaoControl.get('valor')?.invalid &&
+                          questaoControl.get('valor')?.touched
+                        " class="invalid-feedback">
+                            Valor da questão é obrigatório e deve ser maior que zero.
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="label-input ">ID do Professor (Questão):</label>
+                          <p-inputgroup>
+                            <p-inputgroup-addon>
+                              <i class="pi pi-user"></i>
+                            </p-inputgroup-addon>
+                            <input type="number" id="professorId" formControlName="professorId" class="form-control"
+                              [class.is-invalid]="
+                                provaForm.get('professorId')?.invalid &&
+                                  provaForm.get('professorId')?.touched
+                            " />
+                          </p-inputgroup>
+
+                          <div *ngIf="
+                          questaoControl.get('professorId')?.invalid &&
+                          questaoControl.get('professorId')?.touched
+                        " class="invalid-feedback">
+                            ID do Professor da questão é obrigatório.
+                          </div>
+                        </div>
+
+                        <hr />
+                        <h5>Opções da Questão #{{ i + 1 }}</h5>
+                        <div formArrayName="opcoes" class="content-questao">
+                          <div *ngFor="
+                          let opcaoControl of getOpcoes(i).controls;
+                          let j = index
+                        " [formGroupName]="j" class="mb-2 ms-4">
+                            <h6>Opção #{{ j + 1 }}</h6>
+                            <div class="form-group">
+                              <label class="label-input ">Rótulo:</label>
+
+                              <p-inputgroup>
+                                <p-inputgroup-addon>
+                                  <i class="pi pi-user"></i>
+                                </p-inputgroup-addon>
+                                <input type="text" id="rotulo" formControlName="rotulo" class="form-control"
+                                  [class.is-invalid]="
+                                  provaForm.get('rotulo')?.invalid &&
+                                  provaForm.get('rotulo')?.touched
+                                " />
+                              </p-inputgroup>
+
+                              <div *ngIf="
+                                opcaoControl.get('rotulo')?.invalid &&
+                                opcaoControl.get('rotulo')?.touched
+                                " class="invalid-feedback">
+                                Rótulo da opção é obrigatório.
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="label-input ">Descrição:</label>
+                              <p-editor formControlName="descricao" [style]="{ height: '320px', width:'100%'}"
+                                [class.is-invalid]="
+                                  provaForm.get('descricao')?.invalid &&
+                                  provaForm.get('descricao')?.touched
+                                ">
+                                <ng-template #header>
+                                  <span class="ql-formats">
+                                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                                  </span>
+                                </ng-template>
+                              </p-editor>
+
+
+                              <div *ngIf="
+                              opcaoControl.get('descricao')?.invalid &&
+                              opcaoControl.get('descricao')?.touched
+                            " class="invalid-feedback">
+                                Descrição da opção é obrigatória.
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <label class="label-input" for="correta-{{ i }}-{{ j }}">Correta</label>
+                              <p-checkbox formControlName="correta" [binary]="true" id="correta-{{ i }}-{{ j }}" />
+                            </div>
+                            <div class="button-remove-opcao">
+                              <p-button label="Remover Opção" severity="danger" (click)="removeOpcao(i, j)" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="buttons-add-opcao-remove-questao">
+                          <p-button type="button" class="btn btn-secondary btn-sm mt-3" (click)="addOpcao(i)">Adicionar
+                            Opção</p-button>
+                          <p-button label="Remover Questão" severity="secondary" (click)="removeQuestao(i)" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="buttons-add-opcao-remove-questao">
+                      <p-button label="Adicionar Questão" severity="contrast" (click)="addQuestao()" />
+                    </div>
+                  </div>
+                  <div class="flex pt-6 justify-between">
+                    <p-button label="Voltar" severity="secondary" icon="pi pi-arrow-left"
+                      (onClick)="activateCallback(1)" />
+                    <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right"
+                      (onClick)="activateCallback(3)" />
+                  </div>
+                </div>
+              </form>
+            </ng-template>
+          </p-step-panel>
+
+          <p-step-panel [value]="3">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="flex flex-col h-full" style="padding: 1%;">
+                <div
+                  class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium p-4" style="padding: 2%; border-radius: 10px;">
+                  <div>
+                    <h4>Revisão da Prova</h4>
+                    <p>
+                      **Descrição:** {{ provaForm.get('descricao')?.value }}
+                    </p>
+                    <p>
+                      **Data da Prova:** {{ provaForm.get('dataProva')?.value }}
+                    </p>
+                    <p>
+                      **ID da Matéria:** {{ provaForm.get('materiaId')?.value }}
+                    </p>
+                    <p>
+                      **ID do Professor:** {{ provaForm.get('professorId')?.value }}
+                    </p>
+
+                    <h5 class="mt-4">Questões:</h5>
+                    <div *ngIf="questoes.length === 0">Nenhuma questão adicionada.</div>
+                    <div *ngFor="let questao of questoes.controls; let i = index">
+                      <h6>Questão #{{ i + 1 }}</h6>
+                      <p>**Texto:** {{ questao.get('texto')?.value }}</p>
+                      <p>**Valor:** {{ questao.get('valor')?.value }}</p>
+                      <p>**Professor (Questão):** {{ questao.get('professorId')?.value }}</p>
+                      <h6 class="mt-2 ms-3">Opções:</h6>
+                      <div *ngIf="getOpcoes(i).length === 0" class="ms-3">Nenhuma opção adicionada.</div>
+                      <div *ngFor="let opcao of getOpcoes(i).controls; let j = index" class="ms-4">
+                        <p>
+                          **Opção #{{ j + 1 }}:** {{ opcao.get('rotulo')?.value }} -
+                          {{ opcao.get('descricao')?.value }}
+                          <span *ngIf="opcao.get('correta')?.value" class="text-green-500">(Correta)</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex pt-6 justify-between">
+                <p-button label="Voltar" icon="pi pi-arrow-left" (onClick)="activateCallback(2)" />
+                <p-button type="submit" label="Salvar Prova" severity="success" (click)="onSubmit()" />
+              </div>
+            </ng-template>
+          </p-step-panel>
+        </p-step-panels>
+      </p-stepper>
+      <!-- <form>
+        <div class="input-row">
+          <label class="label-input " for="username" class="label-input">Título:</label>
+          <div class="flex items-center gap-4 mb-4 content-input">
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <i class="pi pi-user"></i>
+              </p-inputgroup-addon>
+              <input pInputText id="username" class="flex-auto" autocomplete="off" />
+            </p-inputgroup>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <label for="username" class="label-input">Matéria:</label>
+          <div class="flex items-center gap-4 mb-4 content-input" style="width: 100%;">
+           <input pInputText id="texto" type="number" class="flex-auto" autocomplete="off" />
+          </div>
+        </div>
+        <p class="label-input">Questão 1</p>
+        <div class="questoes">
+
+          <div class="input-row">
+            <label for="texto" class="label-input">Descrição:</label>
+            <div class="flex items-center gap-4 mb-4 content-input">
+              <p-editor [style]="{ height: '15vh',  width: '76vw'}">
+                <ng-template #header>
+                  <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                  </span>
+                </ng-template>
+              </p-editor>
+            </div>
+          </div>
+          <div class="input-row">
+            <label for="texto" class="label-input">Nota:</label>
+            <div class="flex items-center gap-4 mb-4 content-input">
+              <p-inputgroup>
+                <p-inputgroup-addon>
+                  <i class="pi pi-user"></i>
+                </p-inputgroup-addon>
+                <input pInputText id="texto" type="number" class="flex-auto" autocomplete="off" />
+              </p-inputgroup>
+            </div>
+          </div>
+          <div class="respostas">
+            <p class="label-input">Respostas:</p>
+            <div *ngFor="let resposta of respostas; let i = index" class="input-row">
+              <p>{{ resposta.letra }}:</p>
+
+              <label [for]="'editorDescricao' + i" class="label-input">Descrição:</label>
+              <div class="flex items-center gap-4 mb-4 content-input">
+                <p-editor [(ngModel)]="resposta.descricao" [name]="'editor' + i" [ngModelOptions]="{standalone: true}"
+                  [style]="{ height: '15vh',  width: '76vw'}">
+                  <ng-template #header>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Bold"></button>
+                      <button type="button" class="ql-italic" aria-label="Italic"></button>
+                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                  </ng-template>
+                </p-editor>
+              </div>
+
+              <label [for]="'checkboxCorreta' + i" class="label-input">Resposta correta:</label>
+              <div class="flex items-center gap-4 mb-4 content-input">
+                <p>{{ resposta.correta ? 'Sim' : 'Não' }}</p> <p-checkbox [(ngModel)]="resposta.correta"
+                  [name]="'correta' + i" [ngModelOptions]="{standalone: true}" [binary]="true"
+                  [inputId]="'checkboxCorreta' + i">
+                </p-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form> -->
+    </div>
   </div>
 </main>

@@ -93,6 +93,7 @@ export class HeaderComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userLogin'] && changes['userLogin'].currentValue) {
       this.newUserLogin = (changes['userLogin'].currentValue);
+
       this.createForm();
     }
   }
