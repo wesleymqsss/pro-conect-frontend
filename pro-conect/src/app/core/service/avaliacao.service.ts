@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { Observable } from 'rxjs';
-import { IProvaDetalhes } from '../interface/avaliacao';
+import { IProvaDetalhes, IProvaP } from '../interface/avaliacao';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,14 @@ export class AvaliacaoService {
   }
   
   deleteAvaliacao(idAvaliacao: number): Observable<any>{
-    return this.http.delete<any>(`${this.url}/${idAvaliacao}`)
+    return this.http.delete<any>(`${this.url}/${idAvaliacao}`);
+  }
+
+  avaliacaoPorId(idAvaliacao: number): Observable<IProvaP>{
+    return this.http.get<IProvaP>(`${this.url}/detalhadas/${idAvaliacao}`);
+  }
+
+  updateAvaliacao(idAvaliacao: number, bodyAvaliacao: IProvaP): Observable<IProvaP>{
+    return this.http.put<IProvaP>(`${this.url}/detalhadas/${idAvaliacao}`, bodyAvaliacao)
   }
 }

@@ -24,72 +24,183 @@
                                 (click)="editProduct(avaliacao.id)" />
                         </td>
                         <td class="buttons-table">
-                            <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="deleteProduct(avaliacao.id, avaliacao.descricao)" />
+                            <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"
+                                (click)="deleteProduct(avaliacao.id, avaliacao.descricao)" />
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
 
-        <!-- <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true">
-    <ng-template #content>
-        <div class="flex flex-col gap-6">
-            <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.image" class="block m-auto pb-4" *ngIf="product.image" />
-            <div>
-                <label for="name" class="block font-bold mb-3">Name</label>
-                <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus fluid />
-                <small class="text-red-500" *ngIf="submitted && !product.name">Name is required.</small>
-            </div>
-            <div>
-                <label for="description" class="block font-bold mb-3">Description</label>
-                <textarea id="description" pTextarea [(ngModel)]="product.description" required rows="3" cols="20" fluid></textarea>
-            </div>
+        <p-dialog [(visible)]="avaliacaoDialog" [style]="{width: '75vw'}" header="Detalhes da Avaliação" [modal]="true"
+            class="p-fluid" (onHide)="closeAvaliacaoDialog()">
+            <ng-template pTemplate="content">
+                <form [formGroup]="provaForm">
+                    <div class="form-group">
+                        <label class="label-input " for="descricao">Descrição da Prova:</label>
+                        <p-inputgroup>
+                            <p-inputgroup-addon>
+                                <i class="pi pi-user"></i>
+                            </p-inputgroup-addon>
+                            <input pInputText id="descricao" class="form-control" [class.is-invalid]="
+                      provaForm.get('descricao')?.invalid &&
+                      provaForm.get('descricao')?.touched
+                    " formControlName="descricao" placeholder="Descrição é obrigatória" />
+                        </p-inputgroup>
 
-            <div>
-                <label for="inventoryStatus" class="block font-bold mb-3">Inventory Status</label>
-                <p-select [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" optionLabel="label" placeholder="Select a Status" fluid />
-            </div>
+                        <div *ngIf="
+                      provaForm.get('descricao')?.invalid &&
+                      provaForm.get('descricao')?.touched
+                    " class="invalid-feedback">
+                            Descrição é obrigatória.
+                        </div>
+                    </div>
 
-            <div>
-                <span class="block font-bold mb-4">Category</span>
-                <div class="grid grid-cols-12 gap-4">
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton id="category1" name="category" value="Accessories" [(ngModel)]="product.category" />
-                        <label for="category1">Accessories</label>
-                    </div>
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton id="category2" name="category" value="Clothing" [(ngModel)]="product.category" />
-                        <label for="category2">Clothing</label>
-                    </div>
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton id="category3" name="category" value="Electronics" [(ngModel)]="product.category" />
-                        <label for="category3">Electronics</label>
-                    </div>
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton id="category4" name="category" value="Fitness" [(ngModel)]="product.category" />
-                        <label for="category4">Fitness</label>
-                    </div>
-                </div>
-            </div>
+                    <div class="form-group data-prova">
+                        <label class="label-input " for="dataProva">Data da Prova:</label>
+                        <p-datepicker placeholder="Data da prova" id="dataProva" formControlName="dataProva"
+                            [iconDisplay]="'input'" [showIcon]="true" inputId="dataProva" [class.is-invalid]="
+                      provaForm.get('dataProva')?.invalid &&
+                      provaForm.get('dataProva')?.touched
+                    " />
 
-            <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
-                    <label for="price" class="block font-bold mb-3">Price</label>
-                    <p-inputnumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US" fluid />
-                </div>
-                <div class="col-span-6">
-                    <label for="quantity" class="block font-bold mb-3">Quantity</label>
-                    <p-inputnumber id="quantity" [(ngModel)]="product.quantity" fluid />
-                </div>
-            </div>
-        </div>
-    </ng-template>
+                        <div *ngIf="
+                      provaForm.get('dataProva')?.invalid &&
+                      provaForm.get('dataProva')?.touched
+                    " class="invalid-feedback">
+                            Data da prova é obrigatória.
+                        </div>
+                    </div>
 
-    <ng-template #footer>
-        <p-button label="Cancel" icon="pi pi-times" text (click)="hideDialog()" />
-        <p-button label="Save" icon="pi pi-check" (click)="saveProduct()" />
-    </ng-template>
-</p-dialog> -->
-    <p-confirmDialog [style]="{ width: '450px' }" />
+                    <p-divider align="left">
+                        <div class="p-d-inline-flex p-ai-center">
+                            <i class="pi pi-question-circle p-mr-2"></i>
+                            <b>Questões</b>
+                        </div>
+                    </p-divider>
+
+                    <div formArrayName="questoes">
+                        <div *ngFor="let questaoControl of questoes.controls; let i = index" [formGroupName]="i"
+                            class="p-card p-mb-3 p-p-3">
+                            <p-toolbar styleClass="p-mb-4">
+                                <ng-template pTemplate="left">
+                                    <h5>Questão #{{ i + 1 }}</h5>
+                                </ng-template>
+                                <ng-template pTemplate="right">
+                                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"
+                                        (click)="removeQuestao(i)" label="Remover Questão"
+                                        class="p-button-danger p-ml-2" />
+                                </ng-template>
+                            </p-toolbar>
+
+                            <div class="p-field p-grid">
+                                <label class="p-col-12 p-md-3 label-input">Texto da Questão:</label>
+                                <div class="p-col-12 p-md-9">
+                                    <textarea formControlName="texto" pInputTextarea rows="3"
+                                        [class.ng-invalid]="questaoControl.get('texto')?.invalid && questaoControl.get('texto')?.touched"
+                                        [class.ng-dirty]="questaoControl.get('texto')?.dirty"></textarea>
+                                    <small class="p-error"
+                                        *ngIf="questaoControl.get('texto')?.invalid && questaoControl.get('texto')?.touched">Texto
+                                        da
+                                        questão é obrigatório.</small>
+                                </div>
+                            </div>
+
+                            <div class="p-field p-grid">
+                                <label class="p-col-12 p-md-3 label-input">Valor da Questão:</label>
+                                <div class="p-col-12 p-md-9">
+                                    <input type="number" formControlName="valor" pInputText
+                                        [class.ng-invalid]="questaoControl.get('valor')?.invalid && questaoControl.get('valor')?.touched"
+                                        [class.ng-dirty]="questaoControl.get('valor')?.dirty">
+                                    <small class="p-error"
+                                        *ngIf="questaoControl.get('valor')?.invalid && questaoControl.get('valor')?.touched">Valor
+                                        da
+                                        questão é obrigatório e deve ser maior que zero.</small>
+                                </div>
+                            </div>
+
+                            <p-divider align="left">
+                                <div class="p-d-inline-flex p-ai-center">
+                                    <i class="pi pi-check-square p-mr-2"></i>
+                                    <b>Opções da Questão #{{ i + 1 }}</b>
+                                </div>
+                            </p-divider>
+
+                            <div formArrayName="opcoes">
+                                <div *ngFor="let opcaoControl of getOpcoes(i).controls; let j = index"
+                                    [formGroupName]="j" class="p-mb-2 p-ml-4 p-card p-p-2">
+                                    <p-toolbar styleClass="p-mb-2">
+                                        <ng-template pTemplate="left">
+                                            <h6>Opção #{{ j + 1 }}</h6>
+                                        </ng-template>
+                                        <ng-template pTemplate="right">
+                                            <p-button icon="pi pi-trash" severity="danger" [rounded]="true"
+                                                [outlined]="true" (click)="removeOpcao(i, j)" label="Remover Opção"
+                                                class="p-button-danger p-ml-2" />
+                                        </ng-template>
+                                    </p-toolbar>
+
+                                    <div class="p-field p-grid">
+                                        <label class="p-col-12 p-md-3 label-input">Rótulo:</label>
+                                        <div class="p-col-12 p-md-9">
+                                            <input type="text" formControlName="rotulo" pInputText
+                                                [class.ng-invalid]="opcaoControl.get('rotulo')?.invalid && opcaoControl.get('rotulo')?.touched"
+                                                [class.ng-dirty]="opcaoControl.get('rotulo')?.dirty">
+                                            <small class="p-error"
+                                                *ngIf="opcaoControl.get('rotulo')?.invalid && opcaoControl.get('rotulo')?.touched">Rótulo
+                                                da
+                                                opção é obrigatório.</small>
+                                        </div>
+                                    </div>
+                                    <div class="p-field p-grid">
+                                        <label class="label-input ">Descrição:</label>
+                                        <p-editor formControlName="descricao" [style]="{ height: '320px', width:'100%'}"
+                                            [class.is-invalid]="
+                                  provaForm.get('descricao')?.invalid &&
+                                  provaForm.get('descricao')?.touched
+                                ">
+                                            <ng-template #header>
+                                                <span class="ql-formats">
+                                                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                                                    <button type="button" class="ql-italic"
+                                                        aria-label="Italic"></button>
+                                                    <button type="button" class="ql-underline"
+                                                        aria-label="Underline"></button>
+                                                </span>
+                                            </ng-template>
+                                        </p-editor>
+
+
+                                        <div *ngIf="
+                              opcaoControl.get('descricao')?.invalid &&
+                              opcaoControl.get('descricao')?.touched
+                            " class="invalid-feedback">
+                                            Descrição da opção é obrigatória.
+                                        </div>
+                                    </div>
+                                    <div class="p-field-checkbox">
+                                        <p-checkbox formControlName="correta" inputId="correta-{{i}}-{{j}}"
+                                            binary="true"></p-checkbox>
+                                        <label for="correta-{{i}}-{{j}}">Correta</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p-button label="Adicionar Opção" icon="pi pi-plus" [rounded]="true" [outlined]="true"
+                                (click)="addOpcao(i)" class="p-button-secondary p-mt-3" />
+                        </div>
+                    </div>
+                    <p-button label="Adicionar Questão" icon="pi pi-plus" [rounded]="true" [outlined]="true"
+                        (click)="addQuestao()" class="p-button-primary p-mt-3" />
+                </form>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <p-button label="Cancelar" icon="pi pi-times" [rounded]="true" [outlined]="true"
+                    (click)="closeAvaliacaoDialog()" class="p-button-text" />
+                <p-button label="Salvar" icon="pi pi-check" [rounded]="true" [outlined]="true" (click)="saveAvaliacao()"
+                    [disabled]="provaForm.invalid" />
+            </ng-template>
+        </p-dialog>
+        <p-confirmDialog [style]="{ width: '450px' }" />
     </div>
 </main>

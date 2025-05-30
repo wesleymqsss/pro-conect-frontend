@@ -46,6 +46,7 @@ import { Tag } from 'primeng/tag';
 import { RadioButton } from 'primeng/radiobutton';
 import { Rating } from 'primeng/rating';
 import { InputNumber } from 'primeng/inputnumber';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   imports: [
@@ -107,6 +108,7 @@ import { InputNumber } from 'primeng/inputnumber';
     RadioButton,
     Rating,
     InputNumber,
+    DividerModule
 
   ],
   exports: [
@@ -175,7 +177,7 @@ import { InputNumber } from 'primeng/inputnumber';
     RadioButton,
     Rating,
     InputNumber,
-
+    DividerModule
 
   ],
 })
