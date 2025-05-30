@@ -35,6 +35,17 @@ import { EditorModule } from 'primeng/editor';
 import { Select } from 'primeng/select';
 import { StepperModule } from 'primeng/stepper';
 import { DatePickerModule } from 'primeng/datepicker';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { TextareaModule } from 'primeng/textarea';
+import { CommonModule } from '@angular/common';
+import { FileUpload } from 'primeng/fileupload';
+import { SelectModule } from 'primeng/select';
+import { Tag } from 'primeng/tag';
+import { RadioButton } from 'primeng/radiobutton';
+import { Rating } from 'primeng/rating';
+import { InputNumber } from 'primeng/inputnumber';
 
 @NgModule({
   imports: [
@@ -84,7 +95,19 @@ import { DatePickerModule } from 'primeng/datepicker';
     StepperModule,
     DatePickerModule,
     ReactiveFormsModule,
-    AnimateOnScroll
+    AnimateOnScroll,
+    ToolbarModule,
+    ToastModule,
+    ConfirmDialog,
+    TextareaModule,
+    CommonModule,
+    FileUpload,
+    SelectModule,
+    Tag,
+    RadioButton,
+    Rating,
+    InputNumber,
+
   ],
   exports: [
     FocusTrapModule,
@@ -133,7 +156,27 @@ import { DatePickerModule } from 'primeng/datepicker';
     StepperModule,
     DatePickerModule,
     ReactiveFormsModule,
-    AnimateOnScroll
+    AnimateOnScroll,
+    EditorModule,
+    Select,
+    ReactiveFormsModule,
+    StepperModule,
+    DatePickerModule,
+    ReactiveFormsModule,
+    AnimateOnScroll,
+    ToolbarModule,
+    ToastModule,
+    ConfirmDialog,
+    TextareaModule,
+    CommonModule,
+    FileUpload,
+    SelectModule,
+    Tag,
+    RadioButton,
+    Rating,
+    InputNumber,
+
+
   ],
 })
 export class MaterialModule { }

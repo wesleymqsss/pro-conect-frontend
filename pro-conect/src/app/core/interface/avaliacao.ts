@@ -18,3 +18,11 @@ export interface IProvaP{
     professorId: number;
     questoes: IQuestao[];
 }
+
+export interface IProvaDetalhes {
+  id: number;
+  descricao: string;
+  dataProva: string;
+  materiaId: number;
+  professorId: number;
+}

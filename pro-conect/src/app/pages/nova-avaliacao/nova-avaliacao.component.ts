@@ -5,6 +5,7 @@ import { LoginService } from '../../core/service/login.service';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { SnackbarService } from '../../core/service/snackbar.service';
 import { AvaliacaoService } from '../../core/service/avaliacao.service';
+import { ConfirmationService } from 'primeng/api';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class NovaAvaliacaoComponent {
     private _loginService: LoginService,
     private fb: FormBuilder,
     private _snackbarService: SnackbarService,
-    private _avaliacaoService: AvaliacaoService
+    private _avaliacaoService: AvaliacaoService,
   ) { }
 
 
@@ -47,7 +48,6 @@ export class NovaAvaliacaoComponent {
   getUserLogin() {
     this.userSubscription = this._loginService.currentUser$.subscribe(user => {
       this.currentUser = user;
-      console.log('sou o usuario logado na avaliacao', this.currentUser)
     });
 
     this.loginStatusSubscription = this._loginService.isLoggedIn$.subscribe(status => {
@@ -135,17 +135,15 @@ export class NovaAvaliacaoComponent {
         provaData.dataProva = `${year}-${month}-${day}`;
       }
 
-      console.log('Formulário Válido, dados a enviar:', provaData);
-      this._avaliacaoService.createAvaliacao(provaData).subscribe({ 
+      this._avaliacaoService.createAvaliacao(provaData).subscribe({
         next: (suss) => {
-          console.log('Sucesso', suss); 
           this._snackbarService.showSuccess('Prova criada com sucesso!');
           this.provaForm.reset();
           this.createProvaForm();
           this.currentStep = 1;
         },
         error: (err) => {
-          console.log('Deu erro', this.provaForm.getRawValue());
+          console.log('Deu erro', provaData);
           console.error('error: ', err);
           this._snackbarService.showError('Erro ao criar a prova. Verifique os dados e tente novamente.');
         }
@@ -166,4 +164,5 @@ export class NovaAvaliacaoComponent {
       }
     })
   }
+
 }

@@ -56,7 +56,6 @@ export class HomeComponent {
   getUser() {
     this.userSubscription = this._loginService.currentUser$.subscribe(user => {
       this.currentUser = user;
-      console.log('sou o usuario logado na HOME', this.currentUser)
     });
 
     this.loginStatusSubscription = this._loginService.isLoggedIn$.subscribe(status => {
