@@ -1,8 +1,17 @@
 .content {
-    width: 96vw;
-    height: 96vh;
+    width: 99vw;
+    height: 99vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.card{
+    width: 80%;
+    height: 50%;
+}
+
+.buttons-table{
+    gap: 5px;
 }
