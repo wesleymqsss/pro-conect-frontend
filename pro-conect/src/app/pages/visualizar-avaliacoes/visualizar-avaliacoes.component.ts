@@ -7,6 +7,7 @@ import { IOpcao, IProvaDetalhes, IProvaP, IQuestao } from '../../core/interface/
 import { ConfirmationService } from 'primeng/api';
 import { SnackbarService } from '../../core/service/snackbar.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConversorService } from '../../core/service/conversor.service';
 
 @Component({
   selector: 'app-visualizar-avaliacoes',
@@ -28,6 +29,7 @@ export class VisualizarAvaliacoesComponent {
     private _avaliacaoService: AvaliacaoService,
     private confirmationService: ConfirmationService,
     private _snackbarService: SnackbarService,
+    private _conversorService: ConversorService,
     private fb: FormBuilder
   ) {
     this.provaForm = this.fb.group({
@@ -79,20 +81,8 @@ export class VisualizarAvaliacoesComponent {
   }
 
   conversaoMateria(idMateria: number): string {
-    switch (idMateria) {
-      case 1:
-        return 'Banco de Dados';
-      case 2:
-        return 'Programação WEB';
-      case 3:
-        return 'Engenharia de Software';
-      case 4:
-        return 'Redes de Computadores';
-      case 5:
-        return 'Sistemas Operacionais';
-      default:
-        return 'Desconhecido';
-    }
+    const materia = this._conversorService.conversaoMateria(idMateria);
+    return materia;
   }
 
   deleteProduct(idMateria: number, descricao: string) {
@@ -111,7 +101,7 @@ export class VisualizarAvaliacoesComponent {
     });
   }
 
- get questoes(): FormArray {
+  get questoes(): FormArray {
     return this.provaForm.get('questoes') as FormArray;
   }
 
@@ -125,14 +115,14 @@ export class VisualizarAvaliacoesComponent {
     });
   }
 
-  
-  private buildOpcoesFormArray(opcoes: IOpcao[]): FormArray<FormGroup> { 
-  const formArray = this.fb.array<FormGroup>([]); 
-  opcoes.forEach(opcao => {
-    formArray.push(this.buildOpcaoForm(opcao));
-  });
-  return formArray;
-}
+
+  private buildOpcoesFormArray(opcoes: IOpcao[]): FormArray<FormGroup> {
+    const formArray = this.fb.array<FormGroup>([]);
+    opcoes.forEach(opcao => {
+      formArray.push(this.buildOpcaoForm(opcao));
+    });
+    return formArray;
+  }
 
   private buildOpcaoForm(opcao: IOpcao): FormGroup {
     return this.fb.group({
@@ -142,24 +132,24 @@ export class VisualizarAvaliacoesComponent {
     });
   }
 
-  
+
   private populateForm(prova: IProvaP): void {
     this.provaForm.patchValue({
-      id: prova.id, 
+      id: prova.id,
       descricao: prova.descricao,
       dataProva: prova.dataProva,
       materiaId: prova.materiaId,
       professorId: prova.professorId
     });
 
-   
+
     this.questoes.clear();
     prova.questoes.forEach(questao => {
       this.questoes.push(this.buildQuestaoForm(questao));
     });
   }
 
-  
+
   addQuestao(): void {
     const questaoForm = this.fb.group({
       texto: ['', Validators.required],
@@ -197,12 +187,12 @@ export class VisualizarAvaliacoesComponent {
     this.getOpcoes(questaoIndex).removeAt(opcaoIndex);
   }
 
- 
+
   editProduct(idProva: number) {
     this._avaliacaoService.avaliacaoPorId(idProva).subscribe({
-      next: (responseAvaliacao: IProvaP) => { 
-        this.populateForm(responseAvaliacao); 
-        this.avaliacaoDialog = true; 
+      next: (responseAvaliacao: IProvaP) => {
+        this.populateForm(responseAvaliacao);
+        this.avaliacaoDialog = true;
       },
       error: (err) => {
         console.error('Erro ao buscar avaliação para edição:', err);
@@ -219,7 +209,7 @@ export class VisualizarAvaliacoesComponent {
         this._avaliacaoService.updateAvaliacao(avaliacaoToSave.id, avaliacaoToSave).subscribe({
           next: (response) => {
             this._snackbarService.showSuccess('Avaliação atualizada com sucesso!');
-            this.getAvaliacaoProfessor(); 
+            this.getAvaliacaoProfessor();
             this.closeAvaliacaoDialog();
           },
           error: (err) => {
@@ -228,7 +218,7 @@ export class VisualizarAvaliacoesComponent {
           }
         });
       } else {
-       
+
         this._avaliacaoService.createAvaliacao(avaliacaoToSave).subscribe({
           next: (response) => {
             this._snackbarService.showSuccess('Nova avaliação criada com sucesso!');
@@ -259,7 +249,7 @@ export class VisualizarAvaliacoesComponent {
 
   closeAvaliacaoDialog() {
     this.avaliacaoDialog = false;
-    this.provaForm.reset(); 
-    this.questoes.clear(); 
+    this.provaForm.reset();
+    this.questoes.clear();
   }
 }
