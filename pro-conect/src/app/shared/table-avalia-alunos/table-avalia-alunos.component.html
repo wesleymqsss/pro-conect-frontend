@@ -1,0 +1,123 @@
+<div class="card">
+  <p-table
+    [value]="provas"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+  >
+    <ng-template #header>
+      <tr>
+        <th style="width: 20%">Descrição</th>
+        <th style="width: 20%">Data de Entrega</th>
+        <th style="width: 20%">Materia</th>
+        <th style="width: 20%">Professor</th>
+        <th style="width: 20%"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-avaliacao>
+      <tr>
+        <td>{{ avaliacao.descricao }}</td>
+        <td>{{ avaliacao.dataProva }}</td>
+        <td>{{ obterMateria(avaliacao.materiaId) }}</td>
+        <td>{{ obterProfessor(avaliacao.professorId) }}</td>
+        <td>
+          <div class="alinhar-components">
+            <p-button
+              icon="pi pi-file-edit"
+              label="Responder"
+              [disabled]="isValidMap[avaliacao.id]"
+              (click)="mostrarDialog(avaliacao.id)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="card flex justify-center" *ngIf="prova">
+    <p-dialog
+      [header]="`${prova.descricao}`"
+      [modal]="true"
+      [(visible)]="visible"
+      [style]="{ width: '60rem' }"
+    >
+      <div>
+        <div>
+          <div class="alinhar-components">
+            <i
+              class="pi pi-file-edit"
+              style="font-size: 2rem; color: var(--p-green-600)"
+            ></i>
+            <h3>Bem-vindo(a) ao formulário de avaliação!</h3>
+          </div>
+
+          <h4>
+            Antes de iniciar, leia atentamente as orientações abaixo para
+            garantir que sua prova seja realizada corretamente:
+          </h4>
+          <ul>
+            <li>
+              <p>
+                Leia todas as questões com atenção. Certifique-se de entender o
+                que está sendo solicitado antes de responder.
+              </p>
+            </li>
+            <li>
+              <p>
+                Preencha todos os campos obrigatórios. Questões não respondidas
+                poderão comprometer sua nota final.
+              </p>
+            </li>
+            <li>
+              <p>
+                Envio da prova: Ao finalizar, clique no botão “Enviar” no final
+                do formulário. Você só poderá enviar uma vez, então revise suas
+                respostas com atenção.
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p-divider />
+        <form [formGroup]="formProva">
+          <div
+            formArrayName="questoes"
+            *ngFor="let questao of questoesFA.controls; let i = index"
+          >
+            <ng-container [formGroupName]="i">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <p>{{`${i + 1}) ${prova.questoes[i].texto}`  }}</p>
+                <p>{{`Valor: ${prova.questoes[i].valor},00`  }}</p>
+              </div>
+
+              <div *ngFor="let opcao of prova.questoes[i].opcoes">
+                <label for="" style="display: flex; align-items: center">
+                  <input
+                    type="radio"
+                    [value]="opcao.id"
+                    formControlName="opcaoEscolhidaId"
+                  />
+                  <span [innerHTML]="opcao.descricao"></span>
+                </label>
+              </div>
+            </ng-container>
+          </div>
+          <p-divider />
+          <p-button
+            label="Enviar"
+            (click)="onSubmit()"
+            [disabled]="formProva.invalid"
+            severity="success"
+            class="btn-style"
+          />
+        </form>
+      </div>
+    </p-dialog>
+  </div>
+</div>
