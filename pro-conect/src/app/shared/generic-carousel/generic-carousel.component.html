@@ -1,4 +1,4 @@
-<div style="display: flex; align-items: center; gap: 1%">
+<div class="alinhar-components">
   <h2 class="titulo">{{ title }}</h2>
   <i
     [ngClass]="title | cardDashboardIcon"
@@ -70,12 +70,14 @@
                   icon="pi pi-users"
                   label="Visualizar Atividades"
                   class="botao"
+                  disabled="true"
                 ></button>
                 <button
                   pButton
                   type="button"
-                  icon="pi pi-file-edit"
+                  icon="pi pi-file-check"
                   label="Visualizar Provas"
+                  (click)="routerPageViewProof(value.idProfessor)"
                   class="botao"
                 ></button>
               </div>
