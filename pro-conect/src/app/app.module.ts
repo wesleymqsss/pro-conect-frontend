@@ -14,6 +14,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { NovaAvaliacaoModule } from './pages/nova-avaliacao/nova-avaliacao.module';
 import { VisualizarAvaliacoesModule } from './pages/visualizar-avaliacoes/visualizar-avaliacoes.module';
+import { VisaoAvaliacoesAlunoComponent } from './pages/visao-avaliacoes-aluno/visao-avaliacoes-aluno.component';
+import { VisaoAvaliacoesAlunoModule } from './pages/visao-avaliacoes-aluno/visao-avaliacoes-aluno.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { VisualizarAvaliacoesModule } from './pages/visualizar-avaliacoes/visual
     ButtonModule,
     LoginModule,
     NovaAvaliacaoModule,
-    VisualizarAvaliacoesModule
+    VisualizarAvaliacoesModule,
+    VisaoAvaliacoesAlunoModule
   ],
   exports: [
     BrowserModule
