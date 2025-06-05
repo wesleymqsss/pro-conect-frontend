@@ -33,3 +33,14 @@ app-root {
   background-color: var(--p-violet-800);
   color: #ffffff;
 }
+
+.titulo {
+  margin-bottom: 1rem;
+  color: var(--p-gray-800);
+}
+
+.alinhar-components {
+  display: flex;
+  align-items: center;
+  gap: 1%;
+}
