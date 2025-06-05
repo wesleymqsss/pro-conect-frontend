@@ -53,7 +53,6 @@ export class GenericCarouselComponent implements OnInit {
   }
 
   routerPageViewProof(id: number) {
-    console.log('id passado', id);
     this._router.navigate(['visualizar-avaliacoes-aluno'], { queryParams: { idProfessor: id } });
   }
 

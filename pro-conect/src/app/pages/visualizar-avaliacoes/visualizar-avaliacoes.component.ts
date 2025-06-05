@@ -64,7 +64,6 @@ export class VisualizarAvaliacoesComponent {
 
     this.loginStatusSubscription = this._loginService.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
-      console.log('logado: ', this.isLoggedIn)
     });
   }
 
@@ -74,7 +73,6 @@ export class VisualizarAvaliacoesComponent {
       this._avaliacaoService.getAvaliacaoProfessor(id).subscribe({
         next: (avaliacaoProfessorResponse) => {
           this.avaliacaoProfessor = avaliacaoProfessorResponse;
-          console.log(this.avaliacaoProfessor);
         }
       });
     }

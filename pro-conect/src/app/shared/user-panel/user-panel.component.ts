@@ -60,7 +60,6 @@ export class UserPanelComponent implements OnInit, OnChanges {
 
   routerPageViewProva() {
     this._router.navigate(['/visualizar-avaliacoes']);
-    console.log('pagina view')
   }
 
   obterAprovadoEReprovado(nota: number) {
