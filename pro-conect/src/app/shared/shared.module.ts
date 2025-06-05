@@ -14,6 +14,8 @@ import { CardDashboardComponent } from './card-dashboard/card-dashboard.componen
 import { EfficiencyGraphComponent } from './efficiency-graph/efficiency-graph.component';
 import { GenericCarouselComponent } from './generic-carousel/generic-carousel.component';
 import { NoteGraphComponent } from './note-graph/note-graph.component';
+import { AvaliaTabsComponent } from './avalia-tabs/avalia-tabs.component';
+import { TableAvaliaAlunosComponent } from './table-avalia-alunos/table-avalia-alunos.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { NoteGraphComponent } from './note-graph/note-graph.component';
     CardDashboardComponent,
     EfficiencyGraphComponent,
     GenericCarouselComponent,
-    NoteGraphComponent
+    NoteGraphComponent,
+    AvaliaTabsComponent,
+    TableAvaliaAlunosComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,9 @@ import { NoteGraphComponent } from './note-graph/note-graph.component';
     FormLoginLeftComponent,
     HeaderComponent,
     UserPanelComponent,
-    CardDashboardComponent
+    CardDashboardComponent,
+    AvaliaTabsComponent,
+    TableAvaliaAlunosComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,30 @@
+<div class="cont-pai">
+  <div class="cont-header alinhar-components">
+    <h2 class="titulo">Avaliações</h2>
+    <i
+      class="pi pi-file-check"
+      style="font-size: 2rem; color: var(--p-violet-800)"
+    ></i>
+  </div>
+  <div class="cont-tab">
+    <div class="card">
+      <p-tabs value="0">
+        <p-tablist>
+          <p-tab value="0">Pendentes</p-tab>
+          <p-tab value="1">Realizadas</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <app-table-avalia-alunos
+              [provas]="provas"
+              [idUser]="idUser"
+            ></app-table-avalia-alunos>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <app-table-avalia-alunos></app-table-avalia-alunos>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
+  </div>
+</div>

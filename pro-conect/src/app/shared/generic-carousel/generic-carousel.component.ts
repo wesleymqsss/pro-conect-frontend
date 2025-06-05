@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-generic-carousel',
@@ -15,6 +16,12 @@ export class GenericCarouselComponent implements OnInit {
   @Output() notificarModalProvas = new EventEmitter<void>();
 
   responsiveOptions: any[] | undefined;
+  idProfessor!: number;
+
+  constructor(
+    private _router: Router
+  ) { }
+
 
   ngOnInit(): void {
     this.populandoCarrosel();
@@ -43,6 +50,10 @@ export class GenericCarouselComponent implements OnInit {
         numScroll: 1
       }
     ];
+  }
+
+  routerPageViewProof(id: number) {
+    this._router.navigate(['visualizar-avaliacoes-aluno'], { queryParams: { idProfessor: id } });
   }
 
   notificarModalAlunos(turma: string) {

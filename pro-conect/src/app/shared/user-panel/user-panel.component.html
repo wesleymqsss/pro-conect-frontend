@@ -22,7 +22,7 @@
       ></i>
     </div>
     <div class="cont-border">
-      <app-efficiency-graph [dataGraph]="dataGraphProf"> </app-efficiency-graph>
+      <app-efficiency-graph [dataGraph]="dataGraphProf"></app-efficiency-graph>
     </div>
   </div>
   <div class="cont-graph" *ngIf="!isProfessor">
@@ -100,8 +100,8 @@
               <th pSortableColumn="curso" class="col-table">
                 Curso <p-sortIcon field="curso" />
               </th>
-              <th pSortableColumn="mediaFinal" class="col-table">
-                Nota <p-sortIcon field="mediaFinal" />
+              <th pSortableColumn="notaFinal" class="col-table">
+                Nota <p-sortIcon field="notaFinal" />
               </th>
             </tr>
           </ng-template>
@@ -112,8 +112,8 @@
               <td class="style-td">{{ aluno.curso }}</td>
               <td class="style-td">
                 <p-tag
-                  [value]="aluno.mediaFinal"
-                  [severity]="obterAprovadoEReprovado(aluno.mediaFinal)"
+                  [value]="aluno.notaFinal"
+                  [severity]="obterAprovadoEReprovado(aluno.notaFinal)"
                 ></p-tag>
               </td>
               <!-- <td class="style-td">

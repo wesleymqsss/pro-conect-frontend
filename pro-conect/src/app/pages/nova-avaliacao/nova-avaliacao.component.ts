@@ -143,13 +143,11 @@ export class NovaAvaliacaoComponent {
           this.currentStep = 1;
         },
         error: (err) => {
-          console.log('Deu erro', provaData);
           console.error('error: ', err);
           this._snackbarService.showError('Erro ao criar a prova. Verifique os dados e tente novamente.');
         }
       });
     } else {
-      console.log('Formulário Inválido', this.provaForm.getRawValue());
       this._snackbarService.showWarn('Por favor, preencha todos os campos obrigatórios corretamente.');
     }
   }

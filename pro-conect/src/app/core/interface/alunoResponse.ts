@@ -4,4 +4,5 @@ export interface AlunoResponse {
   matricula: string;
   curso: string;
   turma: string;
+  notaFinal: number;
 }

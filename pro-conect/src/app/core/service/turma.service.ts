@@ -8,7 +8,7 @@ import { TurmaListResponse } from '../types/turma-list-response.type';
   providedIn: 'root'
 })
 export class TurmaService {
-  private url = `${environment.api_url}/Alunos/View-de-turmas`
+  private url = `${environment.api_url}/aluno/View-de-turmas`
 
   constructor(private http: HttpClient) { }
 

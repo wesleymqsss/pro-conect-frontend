@@ -1,0 +1,4 @@
+<app-header *ngIf="currentUser" [userLogin]="currentUser"></app-header>
+<main>
+  <app-avalia-tabs [provas]="prova" [idUser]="idUser"></app-avalia-tabs>
+</main>
