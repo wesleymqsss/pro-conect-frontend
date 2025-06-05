@@ -1,0 +1,10 @@
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.conteudo {
+  flex: 1;
+  overflow-y: auto;
+}
