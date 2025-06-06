@@ -231,21 +231,21 @@
                       **Descrição:** {{ provaForm.get('descricao')?.value }}
                     </p>
                     <p>
-                      **Data da Prova:** {{ provaForm.get('dataProva')?.value | date:'dd/MM/yyyy \'as\' HH:mm' }}
+                      **Data da Prova:** {{ provaForm.get('dataProva')?.value | date:'dd/MM/yyyy' }}
                     </p>
                     
 
                     <h5 class="mt-4">Questões:</h5>
                     <div *ngIf="questoes.length === 0">Nenhuma questão adicionada.</div>
-                    <div *ngFor="let questao of questoes.controls; let i = index">
+                    <div *ngFor="let questao of questoes.controls; let i = index" >
                       <h6>Questão #{{ i + 1 }}</h6>
                       <p>**Texto:** {{ questao.get('texto')?.value }}</p>
                       <p>**Valor:** {{ questao.get('valor')?.value }}</p>
                       <p>**Professor (Questão):** {{ questao.get('professorId')?.value }}</p>
                       <h6 class="mt-2 ms-3">Opções:</h6>
                       <div *ngIf="getOpcoes(i).length === 0" class="ms-3">Nenhuma opção adicionada.</div>
-                      <div *ngFor="let opcao of getOpcoes(i).controls; let j = index" class="ms-4">
-                        <p>
+                      <div *ngFor="let opcao of getOpcoes(i).controls; let j = index" class="ms-4" style=" min-width: 30%; max-width: 680px;">
+                        <p style="overflow-wrap: break-word;">
                           **Opção #{{ j + 1 }}:** {{ opcao.get('rotulo')?.value }} -
                           {{ opcao.get('descricao')?.value }}
                           <span *ngIf="opcao.get('correta')?.value" class="text-green-500">(Correta)</span>

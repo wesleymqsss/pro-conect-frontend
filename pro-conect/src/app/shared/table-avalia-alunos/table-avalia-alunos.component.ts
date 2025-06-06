@@ -46,11 +46,16 @@ export class TableAvaliaAlunosComponent implements OnInit {
           }, 2000);
         },
         error: (err) => {
-          this._snackbarService.showError("Erro ao enviar prova!!")
+          if (err.status === 500 && err.error?.message === "O aluno já respondeu essa prova.") {
+            this._snackbarService.showWarn("Prezado aluno, está prova já foi respondida.");
+          } else {
+            this._snackbarService.showError("Erro ao enviar prova!!");
+          }
+          
+          console.error('Erro ao enviar respostas:', err); 
           setTimeout(() => {
             this.visible = false;
           }, 2000);
-          console.error('Erro ao enviar respostas:', err);
         }
       });
     }

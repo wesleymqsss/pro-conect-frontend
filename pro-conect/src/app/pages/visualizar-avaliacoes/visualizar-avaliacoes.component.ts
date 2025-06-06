@@ -103,12 +103,11 @@ export class VisualizarAvaliacoesComponent {
     return this.provaForm.get('questoes') as FormArray;
   }
 
-  // Método para construir um FormGroup para uma questão
   private buildQuestaoForm(questao: IQuestao): FormGroup {
     return this.fb.group({
       texto: [questao.texto, Validators.required],
       valor: [questao.valor, [Validators.required, Validators.min(0.01)]],
-      professorId: [questao.professorId, Validators.required],
+      professorId: [questao.professorId],
       opcoes: this.buildOpcoesFormArray(questao.opcoes)
     });
   }
