@@ -51,48 +51,25 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 50%;">
                       <label class="label-input " for="materiaId" class="label-input">ID da Matéria:</label>
-
-                      <p-inputgroup>
-                        <p-inputgroup-addon>
-                          <i class="pi pi-user"></i>
-                        </p-inputgroup-addon>
-                        <input type="number" id="materiaId" formControlName="materiaId" class="form-control"
-                          [class.is-invalid]="
-                      provaForm.get('materiaId')?.invalid &&
-                      provaForm.get('materiaId')?.touched
-                    " />
-                      </p-inputgroup>
+                        <div class="flex items-center gap-4 mb-4 content-input">
+                          <p-select
+                            [options]="materias"
+                            formControlName="materiaId" placeholder="Selecionar matéria"
+                            optionLabel="name" optionValue="code" class="w-full md:w-56" 
+                            [class.is-invalid]="provaForm.get('materiaId')?.invalid && provaForm.get('materiaId')?.touched"
+                          />
+                        </div>
 
                       <div *ngIf="
                       provaForm.get('materiaId')?.invalid &&
                       provaForm.get('materiaId')?.touched
                     " class="invalid-feedback">
-                        ID da Matéria é obrigatório.
+                         Matéria é obrigatório.
                       </div>
                     </div>
 
-                    <div class="form-group">
-                      <label class="label-input " for="professorId">ID do Professor:</label>
-                      <p-inputgroup>
-                        <p-inputgroup-addon>
-                          <i class="pi pi-user"></i>
-                        </p-inputgroup-addon>
-                        <input type="number" id="professorId" formControlName="professorId" class="form-control"
-                          [class.is-invalid]="
-                      provaForm.get('professorId')?.invalid &&
-                        provaForm.get('professorId')?.touched
-                      " />
-                      </p-inputgroup>
-
-                      <div *ngIf="
-                        provaForm.get('professorId')?.invalid &&
-                        provaForm.get('professorId')?.touched
-                      " class="invalid-feedback">
-                        ID do Professor é obrigatório.
-                      </div>
-                    </div>
                   </div>
                   <div class="flex pt-6 justify-end">
                     <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right"
@@ -155,27 +132,6 @@
                           questaoControl.get('valor')?.touched
                         " class="invalid-feedback">
                             Valor da questão é obrigatório e deve ser maior que zero.
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="label-input ">ID do Professor (Questão):</label>
-                          <p-inputgroup>
-                            <p-inputgroup-addon>
-                              <i class="pi pi-user"></i>
-                            </p-inputgroup-addon>
-                            <input type="number" id="professorId" formControlName="professorId" class="form-control"
-                              [class.is-invalid]="
-                                provaForm.get('professorId')?.invalid &&
-                                  provaForm.get('professorId')?.touched
-                            " />
-                          </p-inputgroup>
-
-                          <div *ngIf="
-                          questaoControl.get('professorId')?.invalid &&
-                          questaoControl.get('professorId')?.touched
-                        " class="invalid-feedback">
-                            ID do Professor da questão é obrigatório.
                           </div>
                         </div>
 
@@ -267,21 +223,17 @@
             <ng-template #content let-activateCallback="activateCallback">
               <div class="flex flex-col h-full" style="padding: 1%;">
                 <div
-                  class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium p-4" style="padding: 2%; border-radius: 10px;">
+                  class="dark:border-surface-700 rounded bg-surface-50  flex-auto flex justify-center items-center font-medium p-4"
+                  style="padding: 2%; border-radius: 10px;">
                   <div>
                     <h4>Revisão da Prova</h4>
                     <p>
                       **Descrição:** {{ provaForm.get('descricao')?.value }}
                     </p>
                     <p>
-                      **Data da Prova:** {{ provaForm.get('dataProva')?.value }}
+                      **Data da Prova:** {{ provaForm.get('dataProva')?.value | date:'dd/MM/yyyy \'as\' HH:mm' }}
                     </p>
-                    <p>
-                      **ID da Matéria:** {{ provaForm.get('materiaId')?.value }}
-                    </p>
-                    <p>
-                      **ID do Professor:** {{ provaForm.get('professorId')?.value }}
-                    </p>
+                    
 
                     <h5 class="mt-4">Questões:</h5>
                     <div *ngIf="questoes.length === 0">Nenhuma questão adicionada.</div>
@@ -311,83 +263,6 @@
           </p-step-panel>
         </p-step-panels>
       </p-stepper>
-      <!-- <form>
-        <div class="input-row">
-          <label class="label-input " for="username" class="label-input">Título:</label>
-          <div class="flex items-center gap-4 mb-4 content-input">
-            <p-inputgroup>
-              <p-inputgroup-addon>
-                <i class="pi pi-user"></i>
-              </p-inputgroup-addon>
-              <input pInputText id="username" class="flex-auto" autocomplete="off" />
-            </p-inputgroup>
-          </div>
-        </div>
-
-        <div class="input-row">
-          <label for="username" class="label-input">Matéria:</label>
-          <div class="flex items-center gap-4 mb-4 content-input" style="width: 100%;">
-           <input pInputText id="texto" type="number" class="flex-auto" autocomplete="off" />
-          </div>
-        </div>
-        <p class="label-input">Questão 1</p>
-        <div class="questoes">
-
-          <div class="input-row">
-            <label for="texto" class="label-input">Descrição:</label>
-            <div class="flex items-center gap-4 mb-4 content-input">
-              <p-editor [style]="{ height: '15vh',  width: '76vw'}">
-                <ng-template #header>
-                  <span class="ql-formats">
-                    <button type="button" class="ql-bold" aria-label="Bold"></button>
-                    <button type="button" class="ql-italic" aria-label="Italic"></button>
-                    <button type="button" class="ql-underline" aria-label="Underline"></button>
-                  </span>
-                </ng-template>
-              </p-editor>
-            </div>
-          </div>
-          <div class="input-row">
-            <label for="texto" class="label-input">Nota:</label>
-            <div class="flex items-center gap-4 mb-4 content-input">
-              <p-inputgroup>
-                <p-inputgroup-addon>
-                  <i class="pi pi-user"></i>
-                </p-inputgroup-addon>
-                <input pInputText id="texto" type="number" class="flex-auto" autocomplete="off" />
-              </p-inputgroup>
-            </div>
-          </div>
-          <div class="respostas">
-            <p class="label-input">Respostas:</p>
-            <div *ngFor="let resposta of respostas; let i = index" class="input-row">
-              <p>{{ resposta.letra }}:</p>
-
-              <label [for]="'editorDescricao' + i" class="label-input">Descrição:</label>
-              <div class="flex items-center gap-4 mb-4 content-input">
-                <p-editor [(ngModel)]="resposta.descricao" [name]="'editor' + i" [ngModelOptions]="{standalone: true}"
-                  [style]="{ height: '15vh',  width: '76vw'}">
-                  <ng-template #header>
-                    <span class="ql-formats">
-                      <button type="button" class="ql-bold" aria-label="Bold"></button>
-                      <button type="button" class="ql-italic" aria-label="Italic"></button>
-                      <button type="button" class="ql-underline" aria-label="Underline"></button>
-                    </span>
-                  </ng-template>
-                </p-editor>
-              </div>
-
-              <label [for]="'checkboxCorreta' + i" class="label-input">Resposta correta:</label>
-              <div class="flex items-center gap-4 mb-4 content-input">
-                <p>{{ resposta.correta ? 'Sim' : 'Não' }}</p> <p-checkbox [(ngModel)]="resposta.correta"
-                  [name]="'correta' + i" [ngModelOptions]="{standalone: true}" [binary]="true"
-                  [inputId]="'checkboxCorreta' + i">
-                </p-checkbox>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form> -->
     </div>
   </div>
 </main>

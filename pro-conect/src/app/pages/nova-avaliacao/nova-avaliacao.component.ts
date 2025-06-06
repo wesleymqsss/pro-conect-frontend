@@ -7,6 +7,10 @@ import { SnackbarService } from '../../core/service/snackbar.service';
 import { AvaliacaoService } from '../../core/service/avaliacao.service';
 import { ConfirmationService } from 'primeng/api';
 
+interface Iselect {
+  name: string;
+  code: number
+}
 
 @Component({
   selector: 'app-nova-avaliacao',
@@ -16,6 +20,7 @@ import { ConfirmationService } from 'primeng/api';
 })
 
 export class NovaAvaliacaoComponent {
+  materias: Iselect[] | undefined;
   currentUser: UserLogin | null = null;
   isLoggedIn: boolean = false;
   provaForm!: FormGroup;
@@ -34,6 +39,14 @@ export class NovaAvaliacaoComponent {
   ngOnInit(): void {
     this.getUserLogin();
     this.createProvaForm();
+
+    this.materias = [
+      { name: 'Banco de Dados', code: 1 },
+      { name: 'Programação WEB', code: 2 },
+      { name: 'Engenharia de Software', code: 3 },
+      { name: 'Redes de Computadores', code: 4 },
+      { name: 'Sistemas Operacionais', code: 5 },
+    ];
   }
 
   ngOnDestroy(): void {
@@ -152,7 +165,6 @@ export class NovaAvaliacaoComponent {
     }
   }
 
-
   private markAllAsTouched(formGroup: FormGroup | FormArray): void {
     Object.values(formGroup.controls).forEach(control => {
       if (control instanceof FormControl) {
@@ -160,7 +172,7 @@ export class NovaAvaliacaoComponent {
       } else if (control instanceof FormGroup || control instanceof FormArray) {
         this.markAllAsTouched(control);
       }
-    })
+    });
   }
 
 }
