@@ -2,9 +2,9 @@
     width: 96vw;
     height: 96vh;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 2%;
 }
 
 .form-content {
@@ -15,6 +15,7 @@
     display: flex;
     justify-content: center;
     border-radius: 8px;
+
 }
 
 form {

@@ -44,17 +44,14 @@ export class HeaderComponent {
         routerLink: ['/home/' + this.newUserLogin.id]
       },
       {
-        label: 'Contact',
-        icon: 'pi pi-envelope'
+        label: 'Contato',
+        icon: 'pi pi-envelope',
+        command: () => this.contactWpp()
       },
       {
         label: 'Perfil',
         icon: 'pi pi-search',
         items: [
-          {
-            label: 'Blocks',
-            icon: 'pi pi-server'
-          },
           {
             label: 'Atualizar Perfil',
             icon: 'pi pi-user-edit',
@@ -69,6 +66,11 @@ export class HeaderComponent {
         ]
       },
     ]
+  }
+  contactWpp(): void {
+    const url = "https://wa.me/5511999999999"
+
+    window.open(url, "_blank");
   }
 
   logout(): void {

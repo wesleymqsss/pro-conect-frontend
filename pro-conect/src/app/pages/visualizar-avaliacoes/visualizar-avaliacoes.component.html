@@ -1,7 +1,10 @@
 <app-header *ngIf="currentUser" [userLogin]="currentUser"></app-header>
 <main>
     <div class="content">
-
+        <div class="cont-header">
+            <h2 class="titulo">Avaliações</h2>
+            <i class="pi pi-file-check" style="font-size: 2rem; color: var(--p-violet-800)"></i>
+        </div>
         <div class="card">
             <p-table [value]="avaliacaoProfessor" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
                 [rowsPerPageOptions]="[5, 10, 20]">
@@ -94,21 +97,19 @@
 
                             <div class="p-field p-grid">
                                 <label class="p-col-12 p-md-3 label-input">Texto da Questão:</label>
-                               <p-editor formControlName="texto" [style]="{ height: '150px', width:'100%'}"
-                                            [class.is-invalid]="
+                                <p-editor formControlName="texto" [style]="{ height: '150px', width:'100%'}"
+                                    [class.is-invalid]="
                                              provaForm.get('texto')?.invalid &&
                                                 provaForm.get('texto')?.touched
                                             ">
-                                            <ng-template #header>
-                                                <span class="ql-formats">
-                                                    <button type="button" class="ql-bold" aria-label="Bold"></button>
-                                                    <button type="button" class="ql-italic"
-                                                        aria-label="Italic"></button>
-                                                    <button type="button" class="ql-underline"
-                                                        aria-label="Underline"></button>
-                                                </span>
-                                            </ng-template>
-                                        </p-editor>
+                                    <ng-template #header>
+                                        <span class="ql-formats">
+                                            <button type="button" class="ql-bold" aria-label="Bold"></button>
+                                            <button type="button" class="ql-italic" aria-label="Italic"></button>
+                                            <button type="button" class="ql-underline" aria-label="Underline"></button>
+                                        </span>
+                                    </ng-template>
+                                </p-editor>
                             </div>
 
                             <div class="p-field p-grid">
@@ -203,8 +204,7 @@
             <ng-template pTemplate="footer">
                 <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (click)="closeAvaliacaoDialog()"
                     class="p-button-text" />
-                <p-button label="Salvar Alterações" severity="success" icon="pi pi-check" (click)="saveAvaliacao()"
-                    />
+                <p-button label="Salvar Alterações" severity="success" icon="pi pi-check" (click)="saveAvaliacao()" />
             </ng-template>
         </p-dialog>
         <p-confirmDialog [style]="{ width: '450px' }" />

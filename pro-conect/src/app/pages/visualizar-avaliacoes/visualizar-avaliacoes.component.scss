@@ -1,18 +1,17 @@
 .content {
     width: 99vw;
-    height: 99vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.card{
+.card {
     width: 80%;
     height: 50%;
 }
 
-.buttons-table{
+.buttons-table {
     gap: 5px;
 }
 
@@ -58,21 +57,29 @@
     align-items: center;
     gap: 6px;
 
-    label{
+    label {
         padding-top: 0;
     }
 }
 
-.questoes{
-   gap: 3px;
-   
+.questoes {
+    gap: 3px;
+
 }
 
-.form{
+.form {
     padding: 5%;
     padding-top: 0;
 }
 
-.button-opcao{
-padding-bottom: 1%;
+.button-opcao {
+    padding-bottom: 1%;
+}
+
+.cont-header {
+    width: 84%;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    gap: 1%;
 }

@@ -90,10 +90,11 @@
                   display: flex;
                   align-items: center;
                   justify-content: space-between;
+                  flex-direction: column;
                 "
               >
                 <p>{{`${i + 1}) ${prova.questoes[i].texto}`  }}</p>
-                <p>{{`Valor: ${prova.questoes[i].valor},00`  }}</p>
+                <p style="color: var(--p-green-600);">{{`Valor: ${prova.questoes[i].valor},00`  }}</p>
               </div>
 
               <div *ngFor="let opcao of prova.questoes[i].opcoes">
@@ -103,7 +104,7 @@
                     [value]="opcao.id"
                     formControlName="opcaoEscolhidaId"
                   />
-                  <span [innerHTML]="opcao.descricao"></span>
+                  <span style="width: 500px;" [innerHTML]="opcao.descricao"></span>
                 </label>
               </div>
             </ng-container>
