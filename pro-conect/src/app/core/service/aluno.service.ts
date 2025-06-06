@@ -9,7 +9,7 @@ import { AlunoListResponse } from '../types/aluno-list-response.type';
   providedIn: 'root'
 })
 export class AlunoService {
-  private url = `${environment.api_url}/alunos`
+  private url = `${environment.api_url}/aluno`
 
   constructor(private http: HttpClient) { }
 
